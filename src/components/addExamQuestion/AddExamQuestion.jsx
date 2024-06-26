@@ -17,8 +17,11 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CancelIcon from '@mui/icons-material/Cancel';
 import './addExamQuestion.scss';
 import axios from "axios";
+import {useCase} from "../../contexts/CaseContext.jsx";
+
 
 const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
+    const { caseDetails, updateCaseDetails, clearCaseDetails } = useCase();
     const initialQuestionState = { text: '', image: null };
     const initialAnswerState = [
         { text: '', image: null, isCorrect: false },
@@ -106,14 +109,14 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
         const formData = new FormData();
 
         // Append general information
-        formData.append('mainTypeName', 'Pain');
-        formData.append('complaintTypeName', 'PainFulTooth');
-        formData.append('caseId', 'case_1');
+        formData.append('mainTypeName', caseDetails.mainComplaintType);
+        formData.append('complaintTypeName', caseDetails.caseName);
+        formData.append('caseId', caseDetails.caseId);
         formData.append('sectionName', 'periodontalScreeningQuestions');
 
         // Append question details as a JSON string
         formData.append('Question', JSON.stringify({
-            questionType: "trueOrFalseType",
+            questionType: answerType,
             question: question.text,
             correctAnswer: answers.some(answer => answer.isCorrect)  // Assuming single true/false
         }));

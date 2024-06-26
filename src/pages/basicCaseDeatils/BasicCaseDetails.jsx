@@ -18,6 +18,7 @@ import axios from "axios";
 import config from "../../config.js";
 import StepperComponent from "../../layout/stepper/StepperComponent.jsx";
 import {useNavigate} from "react-router-dom";
+import {useCase} from "../../contexts/CaseContext.jsx";
 
 const BasicCaseDetails = () => {
     const [image, setImage] = useState(null);
@@ -36,6 +37,7 @@ const BasicCaseDetails = () => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [severity, setSeverity] = useState('info');
+    const { caseDetails, updateCaseDetails, clearCaseDetails } = useCase();
 
     useEffect(() => {
         const url = `${config.apiBaseUrl}dentalComplaintCases/getAllDentalComplaintMainTypes`;
@@ -137,6 +139,12 @@ const BasicCaseDetails = () => {
                 }
             });
             console.log('Case created successfully:', response.data);
+            updateCaseDetails({
+                caseId: response.data.caseId,
+                caseName: response.data.caseName,
+                caseScenario: response.data.caseScenario,
+                mainComplaintType: response.data.mainComplaintType
+            });
             setSnackbarMessage(`Basic details added successfully`);
             setSeverity('success');
             navigate('/historyQuestions');

@@ -18,6 +18,7 @@ import axios from "axios";
 import StepperComponent from "../../layout/stepper/StepperComponent.jsx";
 import {useNavigate} from "react-router-dom";
 import config from "../../config.js";
+import {useCase} from "../../contexts/CaseContext.jsx";
 
 const HistoryQuestions = () => {
     const initialSections = {
@@ -41,6 +42,7 @@ const HistoryQuestions = () => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [severity, setSeverity] = useState('info');
+    const { caseDetails, updateCaseDetails, clearCaseDetails } = useCase();
 
 
     useEffect(() => {
@@ -84,9 +86,9 @@ const HistoryQuestions = () => {
         });
 
         const dataToSend = {
-            caseID: "case_1",
-            mainTypeName: "Pain",
-            complaintTypeName: "Toothache",
+            caseID: caseDetails.caseId,
+            mainTypeName: caseDetails.mainComplaintType,
+            complaintTypeName: caseDetails.caseName,
             historyTakingQuestions
         };
 
@@ -96,6 +98,7 @@ const HistoryQuestions = () => {
     const sendToAPI = async (data) => {
         setIsLoading(true);
         try {
+            console.log("History taking request",data)
             const response = await axios.put(`${config.apiBaseUrl}dentalComplaintCases/updateHistoryTakingQuestions`, data);
             console.log('Questions submitted successfully:', response.data);
             navigate('/periodontalScreeningQuestions');
