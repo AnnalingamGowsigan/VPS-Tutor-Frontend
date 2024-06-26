@@ -1,18 +1,37 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogActions, DialogTitle, TextField, FormControl, FormLabel, Button, Radio, RadioGroup, FormControlLabel } from '@mui/material';
+import axios from "axios";
+import config from "../../config.js";
 
 const AddHistoryQuestionDialog = ({ open, handleClose, handleAddQuestion, selectedSection }) => {
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [status, setStatus] = useState('');
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (question.trim()) {
             handleAddQuestion(selectedSection, question, answer, status);
             setQuestion('');
             setAnswer('');
             setStatus('');
+
+            const dataToSend = {
+                questionText: question,
+                questionType: selectedSection,
+            };
+
+            await sendToAPI(dataToSend)
+        }
+    };
+
+    const sendToAPI = async (data) => {
+        try {
+            console.log("Upload History question to the bank Request: ",data)
+            const response = await axios.post(`${config.apiBaseUrl}historyTakingQestionBank/insert`, data);
+            console.log("Upload History question to the bank response: ",response)
             handleClose();
+        } catch (error) {
+            console.error('Failed to submit questions:', error);
         }
     };
 
