@@ -13,7 +13,7 @@ const Diagnosis = () => {
                 questions={questions}
                 setQuestions={setQuestions}
                 navigatePath={'/createCase'}
-                section ={"Diagnosis"}
+                sectionType ={"Diagnosis"}
             />
         </div>
     );

@@ -13,6 +13,7 @@ const HardTissueAssessment = () => {
                 questions={questions}
                 setQuestions={setQuestions}
                 navigatePath={'/dentalChart'}
+                sectionType={'HardTissueAssessment'}
             />
         </div>
     );

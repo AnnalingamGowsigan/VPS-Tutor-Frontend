@@ -13,7 +13,7 @@ const Radiographs = () => {
                 questions={questions}
                 setQuestions={setQuestions}
                 navigatePath={'/sensibilityRecordings'}
-                section ={"Radiographs"}
+                sectionType ={"Radiographs"}
             />
         </div>
     );

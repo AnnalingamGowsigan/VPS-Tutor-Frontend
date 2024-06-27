@@ -14,7 +14,7 @@ import {AddExamQuestion, QuestionDisplay} from "../Components.jsx";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useNavigate} from "react-router-dom";
 
-const DisplayQuestions = ({questions, setQuestions, navigatePath}) => {
+const DisplayQuestions = ({questions, setQuestions, navigatePath, sectionType}) => {
     const [addExamQuestionOpen, setAddExamQuestionOpen] = React.useState(false);
     const navigate = useNavigate();
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -71,7 +71,7 @@ const DisplayQuestions = ({questions, setQuestions, navigatePath}) => {
                             </Button>
                             <Box display="flex" justifyContent="flex-end" mt={2}>
                                 <Button onClick={() => handleSubmitQuestions()} variant="contained" color="primary">
-                                    Next
+                                    {sectionType !== 'Diagnosis' ? 'Next' : 'Finish'}
                                 </Button>
                                 <Snackbar
                                     open={openSnackbar}
@@ -95,6 +95,7 @@ const DisplayQuestions = ({questions, setQuestions, navigatePath}) => {
                 open={addExamQuestionOpen}
                 handleClose={handleAddExamQuestionToggle}
                 onAddQuestion={handleAddNewQuestion}
+                section={sectionType}
             />
         </div>
     );

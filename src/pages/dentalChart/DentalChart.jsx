@@ -3,10 +3,14 @@ import {BackTooth, FrontTooth} from "../../components/Components.jsx";
 import {useState} from "react";
 import {Box, Button, Grid} from "@mui/material";
 import StepperComponent from "../../layout/stepper/StepperComponent.jsx";
+import {useNavigate} from "react-router-dom";
+import config from "../../config.js";
+import axios from "axios";
 
 // DentalChart component
 const DentalChart = () => {
     const [teethDetails, setTeethDetails] = useState([]);
+    const navigate = useNavigate();
 
     const handleToothUpdate = (toothDetail) => {
         setTeethDetails((prevDetails) => {
@@ -28,21 +32,21 @@ const DentalChart = () => {
             whiteFilling: detail.status === "whiteFilling" ? detail.shape : "no",
         }));
 
-        const response = await fetch(
-            "http://127.0.0.1:5001/virtual-patient-simulator-2024/us-central1/app/api/teethDetails/store",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({Teeth: formattedDetails}),
-            }
-        );
-
-        if (response.ok) {
+        try {
+            const response = await axios.post(
+                `${config.apiBaseUrl}teethDetails/store`,
+                { Teeth: formattedDetails },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
             console.log("Teeth details successfully sent!");
-        } else {
-            console.error("Failed to send teeth details");
+            console.log(response)
+            navigate('/recordPlaqueScore');
+        } catch (error) {
+            console.error("Failed to send teeth details", error);
         }
     };
 
@@ -185,7 +189,6 @@ const DentalChart = () => {
                             <p>38</p>
                         </div>
                     </div>
-                    <button onClick={handleSendDetails}>Send Details</button>
                     <Box display="flex" justifyContent="flex-end" mt={2}>
                         <Button onClick={() => handleSendDetails()} variant="contained" color="primary">
                             Next

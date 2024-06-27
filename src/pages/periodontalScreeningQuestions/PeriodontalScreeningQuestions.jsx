@@ -13,6 +13,7 @@ const PeriodontalScreeningQuestions = () => {
                 questions={questions}
                 setQuestions={setQuestions}
                 navigatePath={'/softTissueAssessment'}
+                sectionType={'PeriodontalScreeningQuestions'}
             />
         </div>
     );

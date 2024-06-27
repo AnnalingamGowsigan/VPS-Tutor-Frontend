@@ -13,7 +13,7 @@ const HematologicalRecordings = () => {
                 questions={questions}
                 setQuestions={setQuestions}
                 navigatePath={'/diagnosis'}
-                section ={"Hematological Recordings"}
+                sectionType ={"Hematological Recordings"}
             />
         </div>
     );

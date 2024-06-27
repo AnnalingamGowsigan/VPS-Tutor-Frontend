@@ -13,6 +13,7 @@ const SoftTissueAssessment = () => {
                 questions={questions}
                 setQuestions={setQuestions}
                 navigatePath={'/hardTissueAssessment'}
+                sectionType={'SoftTissueAssessment'}
             />
         </div>
     );

@@ -13,6 +13,7 @@ const RecordPlaqueScore = () => {
                 questions={questions}
                 setQuestions={setQuestions}
                 navigatePath={'/radiographs'}
+                sectionType={'RecordPlaqueScore'}
             />
         </div>
     );

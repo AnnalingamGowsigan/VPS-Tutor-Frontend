@@ -30,10 +30,6 @@ const App = () => {
             element: <TeacherLogin />,
         },
         {
-            path: "/dentalChartTest",
-            element: <DentalChart/>,
-        },
-        {
             path: "/",
             element: <MainLayout />,
             children: [

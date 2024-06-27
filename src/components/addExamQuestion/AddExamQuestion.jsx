@@ -21,7 +21,7 @@ import {useCase} from "../../contexts/CaseContext.jsx";
 import config from "../../config.js";
 
 
-const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
+const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
     const { caseDetails, updateCaseDetails, clearCaseDetails } = useCase();
     const initialQuestionState = { text: '', image: null };
     const initialAnswerState = [
@@ -37,7 +37,6 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
     const [questionImage,setQuestionImage] = useState(null);
     const [answerImages, setAnswerImages] = useState([null, null, null,null, null, null,null, null, null]);
     const [isLoading, setIsLoading] = useState(false);
-    const [openSnackbar, setOpenSnackbar] = useState(false);
 
     // ... existing functions ...
 
@@ -141,7 +140,7 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
         formData.append('mainTypeName', caseDetails.mainComplaintType);
         formData.append('complaintTypeName', caseDetails.caseName);
         formData.append('caseId', caseDetails.caseId);
-        formData.append('sectionName', 'periodontalScreeningQuestions');
+        formData.append('sectionName', section);
         formData.append('questionType', answerType);
 
 
