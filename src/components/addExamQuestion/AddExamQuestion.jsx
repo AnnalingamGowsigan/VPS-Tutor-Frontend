@@ -11,7 +11,7 @@ import {
     IconButton,
     FormControl,
     InputLabel,
-    Grid
+    Grid, Box, CircularProgress
 } from '@mui/material';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -29,22 +29,15 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
         { text: '', image: null, isCorrect: false},
         { text: '', image: null, isCorrect: false},
         { text: '', image: null, isCorrect: false},
-        { text: '', image: null, isCorrect: false },
-        { text: '', image: null, isCorrect: false},
-        { text: '', image: null, isCorrect: false},
-        { text: '', image: null, isCorrect: false},
-        { text: '', image: null, isCorrect: false },
-        { text: '', image: null, isCorrect: false},
-        { text: '', image: null, isCorrect: false},
-        { text: '', image: null, isCorrect: false},
     ];
 
-    var answerImagesArray = new Array(5);
     const [question, setQuestion] = useState(initialQuestionState);
     const [answers, setAnswers] = useState(initialAnswerState);
     const [answerType, setAnswerType] = useState('single');
     const [questionImage,setQuestionImage] = useState(null);
     const [answerImages, setAnswerImages] = useState([null, null, null,null, null, null,null, null, null]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [openSnackbar, setOpenSnackbar] = useState(false);
 
     // ... existing functions ...
 
@@ -99,7 +92,7 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
 
             const newImages = answerImages.map((img, i) => {
                 if (i === index) {
-                    return file; // Or just store the file if you plan to upload it
+                    return file;
                 }
                 return img;
             });
@@ -117,7 +110,7 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
     };
 
     const handleSaveQuestion = async () => {
-
+        setIsLoading(true)
         const questionData = {
             type: answerType,
             text: question.text,
@@ -164,7 +157,6 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
         formData.append('question', question.text);
 
         //console.log(formData)
-        handleClose();
 
 
 
@@ -179,7 +171,8 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
         } catch (error) {
             console.error('Failed to add question:', error);
         }finally {
-            handleClose(); // This ensures that handleClose is always called, no matter what\
+            setIsLoading(false)
+            handleClose();
             setAnswerImages([null, null, null,null, null, null,null, null, null])
         }
     };
@@ -192,7 +185,18 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
     return (
         <Dialog open={open} onClose={() => handleClose(false)} maxWidth="lg" fullWidth className="add-exam-question-dialog">
             <DialogTitle>Add Exam Question</DialogTitle>
+            {isLoading && (
+                <DialogContent>
+                    <Grid container alignItems="center" spacing={2} className={`question-container`} height="350px">
+                        <Box position="absolute" top="50%" left="50%" style={{transform: 'translate(-50%, -50%)'}}>
+                            <CircularProgress/>
+                        </Box>
+                    </Grid>
+                </DialogContent>
+            )}
+            {!isLoading && (
             <DialogContent>
+                <div>
                 <Grid container alignItems="center" spacing={2} className={`question-container`}>
                     <Grid item xs >
                         <TextField
@@ -274,7 +278,9 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
                 <Button onClick={handleAddAnswerField} variant="outlined" className={`add-answer-btn`}>
                     ADD A NEW ANSWER FIELD
                 </Button>
+                </div>
             </DialogContent>
+            )}
             <DialogActions>
                 <Button onClick={() => handleClose(false)} color="primary">
                     Cancel
