@@ -6,11 +6,11 @@ import config from "../../config.js";
 const AddHistoryQuestionDialog = ({ open, handleClose, handleAddQuestion, selectedSection }) => {
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState("not-required");
 
     const handleSave = async () => {
         if (question.trim()) {
-            handleAddQuestion(selectedSection, question, answer, status);
+            handleAddQuestion(question, answer, status);
             setQuestion('');
             setAnswer('');
             setStatus('');

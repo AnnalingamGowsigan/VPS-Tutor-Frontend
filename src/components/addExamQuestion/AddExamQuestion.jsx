@@ -18,6 +18,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import './addExamQuestion.scss';
 import axios from "axios";
 import {useCase} from "../../contexts/CaseContext.jsx";
+import config from "../../config.js";
 
 
 const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
@@ -25,16 +26,33 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
     const initialQuestionState = { text: '', image: null };
     const initialAnswerState = [
         { text: '', image: null, isCorrect: false },
+        { text: '', image: null, isCorrect: false},
+        { text: '', image: null, isCorrect: false},
+        { text: '', image: null, isCorrect: false},
         { text: '', image: null, isCorrect: false },
+        { text: '', image: null, isCorrect: false},
+        { text: '', image: null, isCorrect: false},
+        { text: '', image: null, isCorrect: false},
         { text: '', image: null, isCorrect: false },
-        { text: '', image: null, isCorrect: false },
+        { text: '', image: null, isCorrect: false},
+        { text: '', image: null, isCorrect: false},
+        { text: '', image: null, isCorrect: false},
     ];
 
+    var answerImagesArray = new Array(5);
     const [question, setQuestion] = useState(initialQuestionState);
     const [answers, setAnswers] = useState(initialAnswerState);
     const [answerType, setAnswerType] = useState('single');
+    const [questionImage,setQuestionImage] = useState(null);
+    const [answerImages, setAnswerImages] = useState([null, null, null,null, null, null,null, null, null]);
 
     // ... existing functions ...
+
+    const indexToLetter = (index) => {
+        // Convert index to ASCII. 'A' is 65 in ASCII, so adding the index will give us the right letter
+        return String.fromCharCode(65 + index); // 65 is the ASCII code for 'A'
+    };
+
 
     const handleClearForm = () => {
         setQuestion(initialQuestionState);
@@ -69,6 +87,7 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
     const handleQuestionImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
+            setQuestionImage(file);
             setQuestion({ ...question, image: URL.createObjectURL(file) });
         }
     };
@@ -77,6 +96,14 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
             const imagePreviewUrl = URL.createObjectURL(file);
+
+            const newImages = answerImages.map((img, i) => {
+                if (i === index) {
+                    return file; // Or just store the file if you plan to upload it
+                }
+                return img;
+            });
+            setAnswerImages(newImages);
 
             const newAnswers = answers.map((answer, i) => {
                 if (i === index) {
@@ -108,37 +135,52 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion }) => {
 
         const formData = new FormData();
 
+        // Append images directly if they exist; append a string 'null' if not
+        formData.append('QuestionImage', questionImage ? questionImage : null);
+        answerImages.forEach((image, index) => {
+            if (image != null && index < 9) {
+                formData.append(indexToLetter(index), image);
+            }
+        });
+        console.log(answerImages)
+
         // Append general information
         formData.append('mainTypeName', caseDetails.mainComplaintType);
         formData.append('complaintTypeName', caseDetails.caseName);
         formData.append('caseId', caseDetails.caseId);
         formData.append('sectionName', 'periodontalScreeningQuestions');
+        formData.append('questionType', answerType);
+
+
 
         // Append question details as a JSON string
-        formData.append('Question', JSON.stringify({
-            questionType: answerType,
-            question: question.text,
-            correctAnswer: answers.some(answer => answer.isCorrect)  // Assuming single true/false
-        }));
+        const answerData = {
+            answerChoices: answers.map(answer => ({
+                text: answer.text,
+                isCorrect: answer.isCorrect
+            }))
+        };
+        formData.append('answerChoices', JSON.stringify(answerData));
+        formData.append('question', question.text);
 
-        // Append images directly if they exist; append a string 'null' if not
-        formData.append('QuestionImage', question.image ? question.image : 'null');
-        formData.append('A', answers.length > 0 && answers[0].image ? answers[0].image : 'null');
-        formData.append('B', answers.length > 1 && answers[1].image ? answers[1].image : 'null');
-        formData.append('C', answers.length > 2 && answers[2].image ? answers[2].image : 'null');
-        formData.append('D', answers.length > 3 && answers[3].image ? answers[3].image : 'null');
+        //console.log(formData)
+        handleClose();
+
+
 
         try {
-            const response = await axios.post('http://127.0.0.1:5001/virtual-patient-simulator-2024/us-central1/app/api/examintionQuestions/createExaminationQuestion', formData, {
+            const response = await axios.post(`${config.apiBaseUrl}examintionQuestions/createExaminationQuestion`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
             console.log('Question added:', response.data);
             onAddQuestion(questionData);
-            handleClose();
         } catch (error) {
             console.error('Failed to add question:', error);
+        }finally {
+            handleClose(); // This ensures that handleClose is always called, no matter what\
+            setAnswerImages([null, null, null,null, null, null,null, null, null])
         }
     };
 
