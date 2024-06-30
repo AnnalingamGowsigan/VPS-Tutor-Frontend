@@ -11,7 +11,7 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import {useState} from "react";
+import { useState } from "react";
 import FrontToothImage from "./FrontToothImage.jsx";
 
 const FrontTooth = ({ toothId, onUpdate }) => {
@@ -64,92 +64,93 @@ const FrontTooth = ({ toothId, onUpdate }) => {
   };
 
   return (
-      <div className="tooth" onClick={handleOpenDialog}>
-        <div>
-          <FrontToothImage selectedOption={options}/>
-        </div>
-        <Dialog
-            open={isDialogOpen}
-            onClose={handleCloseDialog}
-            maxWidth="sm"
-            fullWidth
-        >
-          <DialogTitle>Details for Tooth</DialogTitle>
-          <DialogContent>
-            <FormControl fullWidth margin="normal">
-              <InputLabel id="tooth-present-label">Tooth Present</InputLabel>
-              <Select
-                  labelId="tooth-present-label"
-                  id="tooth-present-select"
-                  value={toothPresent}
-                  label="Tooth Present"
-                  onChange={handleToothPresentChange}
-              >
-                <MenuItem value="yes">Yes</MenuItem>
-                <MenuItem value="no">No</MenuItem>
-              </Select>
-            </FormControl>
-            {toothPresent === "yes" && (
-                <div>
-                  <FormControl fullWidth margin="normal">
-                    <InputLabel id="current-status-label">
-                      Current Status
-                    </InputLabel>
-                    <Select
-                        labelId="current-status-label"
-                        id="current-status-select"
-                        value={currentStatus}
-                        label="Current Status"
-                        onChange={handleCurrentStatusChange}
-                    >
-                      <MenuItem value="cavity">Cavity</MenuItem>
-                      <MenuItem value="inlayFilling">Inlay Filling</MenuItem>
-                      <MenuItem value="amalgamFilling">Amalgam Filling</MenuItem>
-                      <MenuItem value="whiteFilling">White Filling</MenuItem>
-                      <MenuItem value="crack">Cracked Tooth</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <div style={{ marginTop: "20px" }}>
-                    <div>Please select the shape from the following:</div>
-                    <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          flexWrap: "wrap",
-                          marginTop: "20px",
-                        }}
-                    >
-                      {imagesArray.map((image) => (
-                          <img
-                              key={image.id}
-                              src={image.src}
-                              alt={image.alt}
-                              style={{
-                                width: "50px",
-                                cursor: "pointer",
-                                border:
-                                    selectedShape === image.id
-                                        ? "2px solid blue"
-                                        : "none",
-                              }}
-                              onClick={() => handleShapeSelect(image.id)}
-                          />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-            )}
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseDialog} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={handleUpdateTooth} color="primary">
-              Update Tooth
-            </Button>
-          </DialogActions>
-        </Dialog>
+    <div className="tooth" onClick={handleOpenDialog}>
+      <div>
+        <FrontToothImage selectedOption={options} />
       </div>
+      <Dialog
+        open={isDialogOpen}
+        onClose={handleCloseDialog}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>Details for Tooth</DialogTitle>
+        <DialogContent>
+          <FormControl fullWidth margin="normal">
+            <InputLabel id="tooth-present-label">Tooth Present</InputLabel>
+            <Select
+              labelId="tooth-present-label"
+              id="tooth-present-select"
+              value={toothPresent}
+              label="Tooth Present"
+              onChange={handleToothPresentChange}
+            >
+              <MenuItem value="yes">Yes</MenuItem>
+              <MenuItem value="no">No</MenuItem>
+            </Select>
+          </FormControl>
+          {toothPresent === "yes" && (
+            <div>
+              <FormControl fullWidth margin="normal">
+                <InputLabel id="current-status-label">
+                  Current Status
+                </InputLabel>
+                <Select
+                  labelId="current-status-label"
+                  id="current-status-select"
+                  value={currentStatus}
+                  label="Current Status"
+                  onChange={handleCurrentStatusChange}
+                >
+                  <MenuItem value="cavity">Cavity</MenuItem>
+                  <MenuItem value="amalgamFilling">Amalgam Filling</MenuItem>
+                  <MenuItem value="Composite">Composite Filling</MenuItem>
+                  <MenuItem value="GIC">GIC Filling</MenuItem>
+                  <MenuItem value="crack">Cracked Tooth</MenuItem>
+                  <MenuItem value="implant">Implant Tooth</MenuItem>
+                </Select>
+              </FormControl>
+              <div style={{ marginTop: "20px" }}>
+                <div>Please select the shape from the following:</div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    flexWrap: "wrap",
+                    marginTop: "20px",
+                  }}
+                >
+                  {imagesArray.map((image) => (
+                    <img
+                      key={image.id}
+                      src={image.src}
+                      alt={image.alt}
+                      style={{
+                        width: "50px",
+                        cursor: "pointer",
+                        border:
+                          selectedShape === image.id
+                            ? "2px solid blue"
+                            : "none",
+                      }}
+                      onClick={() => handleShapeSelect(image.id)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleUpdateTooth} color="primary">
+            Update Tooth
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 };
 

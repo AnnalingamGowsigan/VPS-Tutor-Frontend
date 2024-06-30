@@ -12,7 +12,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import BackToothImage from "../DentalChartTooth/BackToothImage.jsx";
-import {useState} from "react";
+import { useState } from "react";
 
 const BackTooth = ({ toothId, onUpdate }) => {
   const [toothPresent, setToothPresent] = useState("yes");
@@ -54,6 +54,8 @@ const BackTooth = ({ toothId, onUpdate }) => {
       status: toothPresent === "yes" ? currentStatus : "no",
       shape: toothPresent === "yes" ? currentStatus + "_" + selectedShape : "",
     };
+    console.log(toothDetail);
+
     onUpdate(toothDetail);
     if (toothPresent === "yes") {
       setOptions(currentStatus + "_" + selectedShape);
@@ -66,7 +68,7 @@ const BackTooth = ({ toothId, onUpdate }) => {
   return (
     <div className="tooth" onClick={handleOpenDialog}>
       <div>
-        <BackToothImage selectedOption={options}/>
+        <BackToothImage selectedOption={options} />
       </div>
       <Dialog
         open={isDialogOpen}
@@ -103,10 +105,11 @@ const BackTooth = ({ toothId, onUpdate }) => {
                   onChange={handleCurrentStatusChange}
                 >
                   <MenuItem value="cavity">Cavity</MenuItem>
-                  <MenuItem value="inlayFilling">Inlay Filling</MenuItem>
                   <MenuItem value="amalgamFilling">Amalgam Filling</MenuItem>
-                  <MenuItem value="whiteFilling">White Filling</MenuItem>
+                  <MenuItem value="Composite">Composite Filling</MenuItem>
+                  <MenuItem value="GIC">GIC Filling</MenuItem>
                   <MenuItem value="crack">Cracked Tooth</MenuItem>
+                  <MenuItem value="implant">Implant Tooth</MenuItem>
                 </Select>
               </FormControl>
               <div style={{ marginTop: "20px" }}>
