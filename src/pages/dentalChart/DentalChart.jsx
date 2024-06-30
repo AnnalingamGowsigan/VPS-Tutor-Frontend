@@ -18,7 +18,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth18",
+      toothId: "Tooth18",
       cracked: "no",
     },
     {
@@ -28,7 +28,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth17",
+      toothId: "Tooth17",
       cracked: "no",
     },
     {
@@ -38,7 +38,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth16",
+      toothId: "Tooth16",
       cracked: "no",
     },
     {
@@ -48,7 +48,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth15",
+      toothId: "Tooth15",
       cracked: "no",
     },
     {
@@ -58,7 +58,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth14",
+      toothId: "Tooth14",
       cracked: "no",
     },
     {
@@ -68,7 +68,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth13",
+      toothId: "Tooth13",
       cracked: "no",
     },
     {
@@ -78,7 +78,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth12",
+      toothId: "Tooth12",
       cracked: "no",
     },
     {
@@ -88,7 +88,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth11",
+      toothId: "Tooth11",
       cracked: "no",
     },
     {
@@ -98,7 +98,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth21",
+      toothId: "Tooth21",
       cracked: "no",
     },
     {
@@ -108,7 +108,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth22",
+      toothId: "Tooth22",
       cracked: "no",
     },
     {
@@ -118,7 +118,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth23",
+      toothId: "Tooth23",
       cracked: "no",
     },
     {
@@ -128,7 +128,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth24",
+      toothId: "Tooth24",
       cracked: "no",
     },
     {
@@ -138,7 +138,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth25",
+      toothId: "Tooth25",
       cracked: "no",
     },
     {
@@ -148,7 +148,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth26",
+      toothId: "Tooth26",
       cracked: "no",
     },
     {
@@ -158,7 +158,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth27",
+      toothId: "Tooth27",
       cracked: "no",
     },
     {
@@ -168,7 +168,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth28",
+      toothId: "Tooth28",
       cracked: "no",
     },
     {
@@ -178,7 +178,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth48",
+      toothId: "Tooth48",
       cracked: "no",
     },
     {
@@ -188,7 +188,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth47",
+      toothId: "Tooth47",
       cracked: "no",
     },
     {
@@ -198,7 +198,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth46",
+      toothId: "Tooth46",
       cracked: "no",
     },
     {
@@ -208,7 +208,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth45",
+      toothId: "Tooth45",
       cracked: "no",
     },
     {
@@ -218,7 +218,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth44",
+      toothId: "Tooth44",
       cracked: "no",
     },
     {
@@ -228,7 +228,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth43",
+      toothId: "Tooth43",
       cracked: "no",
     },
     {
@@ -238,7 +238,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth42",
+      toothId: "Tooth42",
       cracked: "no",
     },
     {
@@ -248,7 +248,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth41",
+      toothId: "Tooth41",
       cracked: "no",
     },
     {
@@ -258,7 +258,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth31",
+      toothId: "Tooth31",
       cracked: "no",
     },
     {
@@ -268,7 +268,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth32",
+      toothId: "Tooth32",
       cracked: "no",
     },
     {
@@ -278,7 +278,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth33",
+      toothId: "Tooth33",
       cracked: "no",
     },
     {
@@ -288,7 +288,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth34",
+      toothId: "Tooth34",
       cracked: "no",
     },
     {
@@ -298,7 +298,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth35",
+      toothId: "Tooth35",
       cracked: "no",
     },
     {
@@ -308,7 +308,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth36",
+      toothId: "Tooth36",
       cracked: "no",
     },
     {
@@ -318,7 +318,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth37",
+      toothId: "Tooth37",
       cracked: "no",
     },
     {
@@ -328,7 +328,7 @@ const DentalChart = () => {
       cavity: "no",
       implant: "no",
       amalgamFilling: "no",
-      Name: "Tooth38",
+      toothId: "Tooth38",
       cracked: "no",
     },
   ]);
@@ -345,9 +345,10 @@ const DentalChart = () => {
   };
 
   const handleSendDetails = async () => {
+    console.log("teethDetails", teethDetails);
     const formattedDetails = teethDetails.map((detail) => ({
-      Name: detail.toothId,
-      IsPresent: detail.isPresent,
+      toothId: detail.toothId,
+      IsPresent: detail.IsPresent,
       cracked: detail.status === "crack" ? detail.shape : "no",
       cavity: detail.status === "cavity" ? detail.shape : "no",
       implant: detail.status === "implant" ? detail.shape : "no",
