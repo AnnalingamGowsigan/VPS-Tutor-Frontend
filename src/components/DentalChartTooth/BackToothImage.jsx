@@ -30,6 +30,9 @@ import backTooth_GIC_top from "../../assets/tooth/backTooth_GIC_top.png";
 import backTooth_GIC_down from "../../assets/tooth/backTooth_GIC_down.png";
 import backTooth_GIC_between_top from "../../assets/tooth/backTooth_GIC_between_top.png";
 import backTooth_GIC_between_down from "../../assets/tooth/backTooth_GIC_between_down.png";
+import backTooth_crown from "../../assets/tooth/shapes/backTooth_crown.png";
+import backTooth_discolouration from "../../assets/tooth/shapes/backTooth_discolouration.png";
+import backTooth_partiallyErupted from "../../assets/tooth/shapes/backTooth_partiallyErupted.png";
 
 import { useEffect, useState } from "react";
 
@@ -132,7 +135,15 @@ const BackToothImage = ({ selectedOption }) => {
       case "GIC_7":
         setImageSrc(backTooth_GIC_between_down);
         break;
-
+      case "crown_":
+        setImageSrc(backTooth_crown);
+        break;
+      case "discolouration_":
+        setImageSrc(backTooth_discolouration);
+        break;
+      case "partiallyErupted_":
+        setImageSrc(backTooth_partiallyErupted);
+        break;
       default:
         setImageSrc(backTooth_default);
         break;

@@ -30,6 +30,8 @@ import frontTooth_GIC_top from "../../assets/tooth/frontTooth_GIC_top.png";
 import frontTooth_GIC_down from "../../assets/tooth/frontTooth_GIC_down.png";
 import frontTooth_GIC_between_top from "../../assets/tooth/frontTooth_GIC_between_top.png";
 import frontTooth_GIC_between_down from "../../assets/tooth/frontTooth_GIC_between_down.png";
+import frontTooth_veneer from "../../assets/tooth/shapes/frontTooth_veneer.png";
+import frontTooth_discolouration from "../../assets/tooth/shapes/frontTooth_discolouration.png";
 
 import { useEffect, useState } from "react";
 
@@ -132,7 +134,12 @@ const FrontToothImage = ({ selectedOption }) => {
       case "GIC_7":
         setImageSrc(frontTooth_GIC_between_down);
         break;
-
+      case "veneer_":
+        setImageSrc(frontTooth_veneer);
+        break;
+      case "discolouration_":
+        setImageSrc(frontTooth_discolouration);
+        break;
       default:
         setImageSrc(frontTooth_default);
         break;

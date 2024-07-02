@@ -10,19 +10,28 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import BackToothImage from "../DentalChartTooth/BackToothImage.jsx";
 import { useState } from "react";
+import compositeImage from "../../assets/optionsImges/compositeImage.png";
+import amalgamImage from "../../assets/optionsImges/amalgamImage.png";
+import cavityImage from "../../assets/optionsImges/cavityImage.png";
+import crackImage from "../../assets/tooth/backTooth_crack.png";
+import crownImage from "../../assets/tooth/shapes/backTooth_crown.png";
+import discolouration from "../../assets/tooth/shapes/backTooth_discolouration.png";
+import partiallyErupted from "../../assets/tooth/shapes/backTooth_partiallyErupted.png";
 
 const BackTooth = ({ toothId, onUpdate }) => {
-  const [toothPresent, setToothPresent] = useState("yes");
+  const [toothPresent, setToothPresent] = useState(true);
   const [currentStatus, setCurrentStatus] = useState("");
   const [selectedShape, setSelectedShape] = useState("");
   const [options, setOptions] = useState("default");
 
   const handleToothPresentChange = (event) => {
-    setToothPresent(event.target.value);
-    if (event.target.value === "no") {
+    setToothPresent(event.target.checked);
+    if (!event.target.checked) {
       setCurrentStatus("");
     }
   };
@@ -50,14 +59,14 @@ const BackTooth = ({ toothId, onUpdate }) => {
     event.stopPropagation();
     const toothDetail = {
       toothId,
-      isPresent: toothPresent,
-      status: toothPresent === "yes" ? currentStatus : "no",
-      shape: toothPresent === "yes" ? currentStatus + "_" + selectedShape : "",
+      isPresent: toothPresent ? "yes" : "no",
+      status: toothPresent ? currentStatus : "no",
+      shape: toothPresent ? currentStatus + "_" + selectedShape : "",
     };
     console.log(toothDetail);
 
     onUpdate(toothDetail);
-    if (toothPresent === "yes") {
+    if (toothPresent) {
       setOptions(currentStatus + "_" + selectedShape);
     } else {
       setOptions("no");
@@ -78,20 +87,17 @@ const BackTooth = ({ toothId, onUpdate }) => {
       >
         <DialogTitle>Details for Tooth</DialogTitle>
         <DialogContent>
-          <FormControl fullWidth margin="normal">
-            <InputLabel id="tooth-present-label">Tooth Present</InputLabel>
-            <Select
-              labelId="tooth-present-label"
-              id="tooth-present-select"
-              value={toothPresent}
-              label="Tooth Present"
-              onChange={handleToothPresentChange}
-            >
-              <MenuItem value="yes">Yes</MenuItem>
-              <MenuItem value="no">No</MenuItem>
-            </Select>
-          </FormControl>
-          {toothPresent === "yes" && (
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={toothPresent}
+                onChange={handleToothPresentChange}
+                color="primary"
+              />
+            }
+            label="Tooth Present"
+          />
+          {toothPresent && (
             <div>
               <FormControl fullWidth margin="normal">
                 <InputLabel id="current-status-label">
@@ -104,42 +110,98 @@ const BackTooth = ({ toothId, onUpdate }) => {
                   label="Current Status"
                   onChange={handleCurrentStatusChange}
                 >
-                  <MenuItem value="cavity">Cavity</MenuItem>
-                  <MenuItem value="amalgamFilling">Amalgam Filling</MenuItem>
-                  <MenuItem value="Composite">Composite Filling</MenuItem>
-                  <MenuItem value="GIC">GIC Filling</MenuItem>
-                  <MenuItem value="crack">Cracked Tooth</MenuItem>
-                  <MenuItem value="implant">Implant Tooth</MenuItem>
+                  <MenuItem value="cavity">
+                    <img
+                      src={cavityImage}
+                      alt="Cavity"
+                      style={{ width: "20px", marginRight: "10px" }}
+                    />
+                    Cavity
+                  </MenuItem>
+                  <MenuItem value="amalgamFilling">
+                    <img
+                      src={amalgamImage}
+                      alt="Amalgam Filling"
+                      style={{ width: "20px", marginRight: "10px" }}
+                    />
+                    Amalgam Filling
+                  </MenuItem>
+                  <MenuItem value="Composite">
+                    <img
+                      src={compositeImage}
+                      alt="Composite Filling"
+                      style={{ width: "20px", marginRight: "10px" }}
+                    />
+                    Composite Filling
+                  </MenuItem>
+                  <MenuItem value="crack">
+                    <img
+                      src={crackImage}
+                      alt="Cracked Tooth"
+                      style={{ width: "20px", marginRight: "10px" }}
+                    />
+                    Cracked Tooth
+                  </MenuItem>
+                  <MenuItem value="crown">
+                    <img
+                      src={crownImage}
+                      alt="Crown Tooth"
+                      style={{ width: "20px", marginRight: "10px" }}
+                    />
+                    Crown Tooth
+                  </MenuItem>
+                  <MenuItem value="discolouration">
+                    <img
+                      src={discolouration}
+                      alt="Discolouration"
+                      style={{ width: "20px", marginRight: "10px" }}
+                    />
+                    Discolouration
+                  </MenuItem>
+                  {(toothId === "Tooth48" || toothId === "Tooth38") && (
+                    <MenuItem value="partiallyErupted">
+                      <img
+                        src={partiallyErupted}
+                        alt="Partially Erupted"
+                        style={{ width: "20px", marginRight: "10px" }}
+                      />
+                      Partially Erupted
+                    </MenuItem>
+                  )}
                 </Select>
               </FormControl>
-              <div style={{ marginTop: "20px" }}>
-                <div>Please select the shape from the following:</div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                    flexWrap: "wrap",
-                    marginTop: "20px",
-                  }}
-                >
-                  {imagesArray.map((image) => (
-                    <img
-                      key={image.id}
-                      src={image.src}
-                      alt={image.alt}
-                      style={{
-                        width: "50px",
-                        cursor: "pointer",
-                        border:
-                          selectedShape === image.id
-                            ? "2px solid blue"
-                            : "none",
-                      }}
-                      onClick={() => handleShapeSelect(image.id)}
-                    />
-                  ))}
+              {(currentStatus === "cavity" ||
+                currentStatus === "amalgamFilling" ||
+                currentStatus === "Composite") && (
+                <div style={{ marginTop: "20px" }}>
+                  <div>Please select the shape from the following:</div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      flexWrap: "wrap",
+                      marginTop: "20px",
+                    }}
+                  >
+                    {imagesArray.map((image) => (
+                      <img
+                        key={image.id}
+                        src={image.src}
+                        alt={image.alt}
+                        style={{
+                          width: "50px",
+                          cursor: "pointer",
+                          border:
+                            selectedShape === image.id
+                              ? "2px solid blue"
+                              : "none",
+                        }}
+                        onClick={() => handleShapeSelect(image.id)}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           )}
         </DialogContent>
