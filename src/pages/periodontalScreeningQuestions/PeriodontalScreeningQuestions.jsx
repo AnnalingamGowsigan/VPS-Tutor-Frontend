@@ -15,7 +15,6 @@ const PeriodontalScreeningQuestions = () => {
 
     const handleNext = () => {
         setQuestions('periodontalScreeningQuestions', questions);
-        // Navigate to the next section
     };
 
     return (

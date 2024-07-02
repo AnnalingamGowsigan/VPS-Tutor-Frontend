@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './diagnosis.scss';
 import {DisplayQuestions} from "../../components/Components.jsx";
 import StepperComponent from "../../layout/stepper/StepperComponent.jsx";
+import { useQuestions } from "../../contexts/QuestionsContext.jsx";
 
 const Diagnosis = () => {
+    const { state, setQuestions } = useQuestions();
+    const [questions, setLocalQuestions] = useState(state.diagnosis);
 
-    const [questions, setQuestions] = useState([]);
+    useEffect(() => {
+        setLocalQuestions(state.diagnosis);
+        console.log("Questions in context:", state.diagnosis);
+    }, [state.diagnosis]);
+
+    const handleNext = () => {
+        setQuestions('diagnosis', questions);
+    };
+
     return (
-        <div className="dagnosis">
-            <StepperComponent selectedStep={"Diagnosis"}></StepperComponent>
+        <div className="diagnosis">
+            <StepperComponent selectedStep={"Diagnosis"} />
             <DisplayQuestions
                 questions={questions}
-                setQuestions={setQuestions}
-                navigatePath={'/createCase'}
-                sectionType ={"Diagnosis"}
+                setQuestions={setLocalQuestions}
+                navigatePath={'/questionsPreview'}
+                sectionType={"Diagnosis"}
+                onNext={handleNext}
             />
         </div>
     );

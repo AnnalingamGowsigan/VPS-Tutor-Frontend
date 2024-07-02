@@ -6,6 +6,7 @@ export {default as QuestionDisplay} from "./questionDisplay/QuestionDisplay.jsx"
 export {default as DisplayQuestions} from "./displayQuestions/DisplayQuestions.jsx";
 export {default as BackTooth} from "./DentalChartTooth/BackTooth.jsx";
 export {default as FrontTooth} from "./DentalChartTooth/FrontTooth.jsx";
+export {default as QuestionSection} from "./questionsSection/QuestionsSection.jsx"
 
 //Student Components//
 export {default as ChatBot} from "./chatBot/ChatBot.jsx";

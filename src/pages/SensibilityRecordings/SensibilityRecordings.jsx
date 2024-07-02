@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './sensibilityRecordings.scss';
-import {DisplayQuestions} from "../../components/Components.jsx";
+import { DisplayQuestions } from "../../components/Components.jsx";
 import StepperComponent from "../../layout/stepper/StepperComponent.jsx";
+import { useQuestions } from "../../contexts/QuestionsContext.jsx";
 
 const SensibilityRecordings = () => {
-    const [questions, setQuestions] = useState([]);
+    const { state, setQuestions } = useQuestions();
+    const [questions, setLocalQuestions] = useState(state.sensibilityRecordings);
+
+    useEffect(() => {
+        setLocalQuestions(state.sensibilityRecordings);
+        console.log("Questions in context:", state.sensibilityRecordings);
+    }, [state.sensibilityRecordings]);
+
+    const handleNext = () => {
+        setQuestions('sensibilityRecordings', questions);
+    };
 
     return (
         <div className="sensibility-recordings">
-            <StepperComponent selectedStep={"Sensibility Recordings"}></StepperComponent>
+            <StepperComponent selectedStep={"Sensibility Recordings"} />
             <DisplayQuestions
                 questions={questions}
-                setQuestions={setQuestions}
+                setQuestions={setLocalQuestions}
                 navigatePath={'/hematologicalRecordings'}
-                sectionType ={"SensibilityRecordings"}
+                sectionType={"SensibilityRecordings"}
+                onNext={handleNext}
             />
         </div>
     );

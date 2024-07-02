@@ -13,6 +13,7 @@ export { default as SensibilityRecordings } from "./SensibilityRecordings/Sensib
 export { default as HematologicalRecordings } from "./hematologicalRecordings/HematologicalRecordings.jsx";
 export { default as Diagnosis } from "./diagnosis/Diagnosis.jsx";
 export { default as CaseDescription } from "./caseDescription/CaseDescription.jsx";
+export {default as QuestionsPreview} from "./questionsPreview/QuestionsPreview.jsx"
 
 //============ Student ======================//
 

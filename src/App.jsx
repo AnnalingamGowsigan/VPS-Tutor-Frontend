@@ -13,7 +13,7 @@ import {
     HematologicalRecordings,
     SensibilityRecordings,
     Radiographs,
-    RecordPlaqueScore, TeacherSignup
+    RecordPlaqueScore, TeacherSignup, QuestionsPreview
 } from "./pages/Pages.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
 import "./styles/global.scss";
@@ -84,6 +84,10 @@ const App = () => {
                 {
                     path: "/teacherSignup",
                     element: <PrivateRoute><TeacherSignup /></PrivateRoute>,
+                },
+                {
+                    path: "/questionsPreview",
+                    element: <PrivateRoute><QuestionsPreview /></PrivateRoute>,
                 },
 
             ],
