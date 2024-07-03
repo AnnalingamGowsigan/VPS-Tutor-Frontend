@@ -7,13 +7,11 @@
   align-content: center;
   max-width: 1200px; /* Set a maximum width for the dental chart */
   margin: 30px auto; /* Center the dental chart horizontally */
+  p {
+    text-align:center
+  }
 }
 
-/* Styles for each tooth */
-/* Container for each tooth and its number */
-p {
-  text-align:center
-}
 
 
 /* Adjust tooth size for smaller viewports */
