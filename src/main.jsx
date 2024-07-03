@@ -5,6 +5,7 @@ import {UserProvider} from "./contexts/UserContext.jsx";
 import {CaseProvider} from "./contexts/CaseContext.jsx";
 import {QuestionsProvider} from "./contexts/QuestionsContext.jsx";
 import {HistoryQuestionsProvider} from "./contexts/HistoryQuestionsContext.jsx"
+import {ToothDetailsProvider} from "./contexts/ToothDetailsContext.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <CaseProvider>
               <QuestionsProvider>
                   <HistoryQuestionsProvider>
+                      <ToothDetailsProvider>
                         <App />
+                      </ToothDetailsProvider>
                   </HistoryQuestionsProvider>
               </QuestionsProvider>
           </CaseProvider>

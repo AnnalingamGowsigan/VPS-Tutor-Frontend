@@ -82,6 +82,9 @@ const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, 
                                 <Button onClick={handleSubmitQuestions} variant="contained" color="primary">
                                     {sectionType !== 'Diagnosis' ? 'Next' : 'Finish'}
                                 </Button>
+                                <Button onClick={handleSubmitQuestions} variant="contained" color="primary">
+                                    {sectionType !== 'Diagnosis' ? 'Next' : 'Finish'}
+                                </Button>
                                 <Snackbar
                                     open={openSnackbar}
                                     autoHideDuration={6000}

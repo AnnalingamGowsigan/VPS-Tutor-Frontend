@@ -13,7 +13,7 @@ import {
     HematologicalRecordings,
     SensibilityRecordings,
     Radiographs,
-    RecordPlaqueScore, TeacherSignup, QuestionsPreview, ExtraOralExamination, Investigations
+    RecordPlaqueScore, TeacherSignup, QuestionsPreview, ExtraOralExamination, Investigations, DentalChartContainer
 } from "./pages/Pages.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
 import "./styles/global.scss";
@@ -59,7 +59,7 @@ const App = () => {
                 },
                 {
                     path: "/dentalChart",
-                    element: <PrivateRoute><DentalChart /></PrivateRoute>,
+                    element: <PrivateRoute><DentalChartContainer /></PrivateRoute>,
                 },
                 {
                     path: "/recordPlaqueScore",

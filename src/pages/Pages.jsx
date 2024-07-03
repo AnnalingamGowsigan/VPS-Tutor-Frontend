@@ -7,6 +7,7 @@ export { default as PeriodontalScreeningQuestions } from "./periodontalScreening
 export { default as SoftTissueAssessment } from "./softTissueAssessment/SoftTissueAssessment.jsx";
 export { default as HardTissueAssessment } from "./hardTissueAssessment/HardTissueAssessment.jsx";
 export { default as DentalChart } from "./dentalChart/DentalChart.jsx";
+export { default as DentalChartContainer } from "./dentalChartContainer/DentalChartContainer.jsx";
 export { default as RecordPlaqueScore } from "./recordPlaqueScore/RecordPlaqueScore.jsx";
 export { default as Radiographs } from "./radiographs/Radiographs.jsx";
 export { default as SensibilityRecordings } from "./SensibilityRecordings/SensibilityRecordings.jsx";

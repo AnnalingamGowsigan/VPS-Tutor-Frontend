@@ -7,6 +7,7 @@ import { useHistoryQuestions } from '../../contexts/HistoryQuestionsContext.jsx'
 import RenderCaseDetails from "../../components/renderCaseDetails/RenderCaseDetails.jsx";
 import {useNavigate} from "react-router-dom";
 import {useCase} from "../../contexts/CaseContext.jsx";
+import {DentalChart} from "../Pages.jsx";
 
 
 const QuestionsPreview = () => {
@@ -31,7 +32,6 @@ const QuestionsPreview = () => {
             <QuestionsSection questions={questionsState.periodontalScreeningQuestions} sectionTitle="Periodontal Screening Questions" />
             <QuestionsSection questions={questionsState.softTissueAssessment} sectionTitle="Soft Tissue Assessment" />
             <QuestionsSection questions={questionsState.hardTissueAssessment} sectionTitle="Hard Tissue Assessment" />
-            <QuestionsSection questions={questionsState.dentalChart} sectionTitle="Dental Chart" />
             <QuestionsSection questions={questionsState.recordPlaqueScore} sectionTitle="Record Plaque Score" />
             <QuestionsSection questions={questionsState.radiographs} sectionTitle="Radiographs" />
             <QuestionsSection questions={questionsState.sensibilityRecordings} sectionTitle="Sensibility Recordings" />
