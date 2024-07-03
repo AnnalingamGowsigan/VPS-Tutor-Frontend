@@ -22,7 +22,7 @@ import axios from "axios";
 import { useCase } from "../../contexts/CaseContext.jsx";
 import config from "../../config.js";
 
-const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
+const AddInstruction = ({ open, handleClose, onAddQuestion, section }) => {
     const { caseDetails } = useCase();
     const initialQuestionState = { text: '', image: null };
     const initialAnswerState = [
@@ -166,7 +166,7 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
 
     return (
         <Dialog open={open} onClose={() => handleClose(false)} maxWidth="lg" fullWidth className="add-exam-question-dialog">
-            <DialogTitle>Add Question</DialogTitle>
+            <DialogTitle>Add Instruction</DialogTitle>
             {isLoading && (
                 <DialogContent>
                     <Grid container alignItems="center" spacing={2} className={`question-container`} height="350px">
@@ -183,82 +183,13 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
                             <Grid item xs>
                                 <TextField
                                     fullWidth
-                                    label="Enter Question"
+                                    label="Enter The Instruction"
                                     variant="outlined"
                                     value={question.text}
                                     onChange={(e) => setQuestion({ ...question, text: e.target.value })}
                                 />
                             </Grid>
-                            <Grid item style={{ display: 'flex', alignItems: 'center' }}>
-                                {question.image && (
-                                    <img src={question.image} alt="Question Preview" style={{ width: '48px', height: '48px', marginRight: '10px' }} />
-                                )}
-                                <IconButton color="primary" component="label" style={{ marginLeft: '10px' }}>
-                                    <AddPhotoAlternateIcon />
-                                    <input type="file" hidden onChange={handleQuestionImageChange} accept="image/*" />
-                                </IconButton>
-                            </Grid>
-
-                            <Grid item>
-                                <FormControl>
-                                    <InputLabel id="answer-type-select-label">Answer Type</InputLabel>
-                                    <Select
-                                        className="custom-select"
-                                        labelId="answer-type-select-label"
-                                        id="answer-type-select"
-                                        value={answerType}
-                                        label="Select the Question type"
-                                        onChange={(e) => setAnswerType(e.target.value)}
-                                    >
-                                        <MenuItem value="single">Single Answer</MenuItem>
-                                        <MenuItem value="multiple">Multiple Answers</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
                         </Grid>
-                        {answers.map((answer, index) => (
-                            <Grid container alignItems="center" spacing={2} key={index}>
-                                <Grid item xs>
-                                    <TextField
-                                        fullWidth
-                                        label={`Enter Answer ${index + 1}`}
-                                        variant="outlined"
-                                        value={answer.text}
-                                        onChange={(e) => handleAnswerTextChange(index, e.target.value)}
-                                    />
-                                </Grid>
-                                <Grid item style={{ display: 'flex', alignItems: 'center' }}>
-                                    {answer.image && (
-                                        <img src={answer.image} alt="Answer Preview" style={{ width: '48px', height: '48px', marginRight: '10px' }} />
-                                    )}
-                                    <IconButton color="primary" component="label">
-                                        <AddPhotoAlternateIcon />
-                                        <input type="file" hidden onChange={(e) => handleAnswerImageChange(index, e)} accept="image/*" />
-                                    </IconButton>
-                                </Grid>
-                                <Grid item>
-                                    <FormControl>
-                                        <Select
-                                            labelId={`correct-answer-select-label-${index}`}
-                                            id={`correct-answer-select-${index}`}
-                                            value={answer.isCorrect ? 'correct' : 'incorrect'}
-                                            onChange={(e) => handleAnswerCorrectnessChange(index, e.target.value)}
-                                        >
-                                            <MenuItem value="correct">Correct Answer</MenuItem>
-                                            <MenuItem value="incorrect">Incorrect Answer</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Grid>
-                                <Grid item>
-                                    <IconButton onClick={() => handleRemoveAnswerField(index)}>
-                                        <CancelIcon />
-                                    </IconButton>
-                                </Grid>
-                            </Grid>
-                        ))}
-                        <Button onClick={handleAddAnswerField} variant="outlined" className={`add-answer-btn`}>
-                            ADD A NEW ANSWER FIELD
-                        </Button>
                     </div>
                 </DialogContent>
             )}
@@ -277,4 +208,4 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
     );
 };
 
-export default AddExamQuestion;
+export default AddInstruction;

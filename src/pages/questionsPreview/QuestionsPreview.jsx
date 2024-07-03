@@ -25,7 +25,7 @@ const QuestionsPreview = () => {
     };
 
     return (
-        <Container style={{textAlign:"left"}}>
+        <Container>
             <RenderCaseDetails/>
             <RenderHistoryQuestions historyQuestions={historyState.historyQuestions} />
             <QuestionsSection questions={questionsState.extraOralExamination} sectionTitle="Extra Oral Examination" />
@@ -40,8 +40,11 @@ const QuestionsPreview = () => {
             <QuestionsSection questions={questionsState.diagnosis} sectionTitle="Diagnosis" />
 
             <Box display="flex" justifyContent="space-between" mt={2}>
-                <Button onClick={() => navigate('/diagnosis')} variant="outlined" color="primary" sx={{ marginRight: 1 }}>
+                <Button onClick={() => navigate('/diagnosis')} variant="contained" color="primary" sx={{ marginRight: 1 }}>
                     Back
+                </Button>
+                <Button  variant="outlined" color="primary" sx={{ marginRight: 1 }}>
+                    <a href="https://vps-2024-2715c.web.app/" target="_blank">Check Student View</a>
                 </Button>
                 <Button onClick={handleCreateNewCase} variant="contained" color="primary">
                     Create New Case

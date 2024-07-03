@@ -19,7 +19,7 @@ const PeriodontalScreeningQuestions = () => {
 
     return (
         <div className="periodontal-screening-questions">
-            <StepperComponent selectedStep={"Periodontal Screening Questions"} />
+            <StepperComponent selectedStep={"Periodontal Screening"} />
             <DisplayQuestions
                 questions={questions}
                 setQuestions={setLocalQuestions}

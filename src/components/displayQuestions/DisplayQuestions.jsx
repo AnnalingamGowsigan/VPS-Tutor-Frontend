@@ -10,7 +10,7 @@ import {
     Snackbar, Alert, Grid
 } from '@mui/material';
 import './displayQuestions.scss';
-import { AddExamQuestion, QuestionDisplay } from "../Components.jsx";
+import { AddExamQuestion, QuestionDisplay, AddInstruction } from "../Components.jsx";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useNavigate } from "react-router-dom";
 import { useQuestions } from "../../contexts/QuestionsContext.jsx";
@@ -18,6 +18,7 @@ import { useQuestions } from "../../contexts/QuestionsContext.jsx";
 const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, onNext,navigateBackPath,clearPath }) => {
     const navigate = useNavigate();
     const [addExamQuestionOpen, setAddExamQuestionOpen] = useState(false);
+    const [addInstructionOpen, setAddInstructionOpen] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [severity, setSeverity] = useState('info');
@@ -31,6 +32,10 @@ const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, 
 
     const handleAddExamQuestionToggle = () => {
         setAddExamQuestionOpen(!addExamQuestionOpen);
+    };
+
+    const handleAddInstructionToggle = () => {
+        setAddInstructionOpen(!addInstructionOpen)
     };
 
     const handleAddNewQuestion = (newQuestion) => {
@@ -78,6 +83,10 @@ const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, 
                             <Button variant="outlined" onClick={handleAddExamQuestionToggle} className="add-new-question-btn">
                                 ADD NEW QUESTION
                             </Button>
+                            <Typography variant="body1" textAlign='center' marginTop='40px'>------------ OR ------------</Typography>
+                            <Button variant="outlined" onClick={handleAddInstructionToggle} className="add-new-question-btn">
+                                ADD AN INSTRUCTION
+                            </Button>
                             <Box display="flex" justifyContent="space-between" mt={2}>
                                 <Box>
                                     <Button onClick={() => navigate(navigateBackPath)} variant="contained" color="primary" sx={{ marginRight: 1 }}>
@@ -111,6 +120,12 @@ const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, 
             <AddExamQuestion
                 open={addExamQuestionOpen}
                 handleClose={handleAddExamQuestionToggle}
+                onAddQuestion={handleAddNewQuestion}
+                section={sectionType}
+            />
+            <AddInstruction
+                open={addInstructionOpen}
+                handleClose={handleAddInstructionToggle}
                 onAddQuestion={handleAddNewQuestion}
                 section={sectionType}
             />
