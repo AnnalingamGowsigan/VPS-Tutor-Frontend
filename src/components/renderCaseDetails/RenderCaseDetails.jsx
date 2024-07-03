@@ -25,11 +25,11 @@ const RenderCaseDetails = () => {
                 <Typography gutterBottom variant="h5" component="div">
                     {caseDetails.caseName}
                 </Typography>
-                <Typography variant="body2" color="textSecondary">
-                    {caseDetails.caseScenario}
+                <Typography variant="h6" color="textSecondary">
+                    {caseDetails.mainComplaintType}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                    {caseDetails.mainComplaintType}
+                    {caseDetails.caseScenario}
                 </Typography>
             </CardContent>
         </CardActionArea>

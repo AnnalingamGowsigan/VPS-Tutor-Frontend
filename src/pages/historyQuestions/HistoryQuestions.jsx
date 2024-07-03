@@ -187,7 +187,7 @@ const HistoryQuestions = () => {
 
     return (
         <div className="history-questions">
-            <StepperComponent selectedStep={"History Questions"}></StepperComponent>
+            <StepperComponent selectedStep={"History Taking"}></StepperComponent>
             <Box position="relative" minHeight="100vh">
                 {isLoading && (
                     <Box position="absolute" top="20%" left="50%" style={{ transform: 'translate(-50%, -50%)' }}>

@@ -4,9 +4,9 @@ import './stepperComponent.scss';
 
 const steps = [
     'Basic Details',
-    'History Questions',
+    'History Taking',
     'Extra Oral Examination',
-    'Periodontal Screening Questions',
+    'Periodontal Screening',
     'Soft Tissue Assessment',
     'Hard Tissue Assessment',
     'Dental Chart',

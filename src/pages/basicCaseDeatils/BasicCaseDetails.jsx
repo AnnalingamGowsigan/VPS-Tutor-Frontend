@@ -297,6 +297,12 @@ const BasicCaseDetails = () => {
                                 </Grid>
                             </Grid>
                 </Grid>
+                <Box display="flex" justifyContent="flex-end" mt={2}>
+                    <Typography variant="h6" gutterBottom>New to the system? 👉 </Typography>
+                    <Button  variant="contained" color="primary">
+                        <a href="" target="_blank">Check out these sample questions!</a>
+                    </Button>
+                </Box>
             </Grid>
                 )}
             </Box>
