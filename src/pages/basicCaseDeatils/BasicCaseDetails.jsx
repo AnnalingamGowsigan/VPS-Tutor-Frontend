@@ -143,7 +143,8 @@ const BasicCaseDetails = () => {
                 caseId: response.data.caseId,
                 caseName: response.data.caseName,
                 caseScenario: response.data.caseScenario,
-                mainComplaintType: response.data.mainComplaintType
+                mainComplaintType: response.data.mainComplaintType,
+                imgUrl: response.data.thumbnailImageURL
             });
             setSnackbarMessage(`Basic details added successfully`);
             setSeverity('success');

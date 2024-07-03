@@ -4,6 +4,7 @@ import { useQuestions } from "../../contexts/QuestionsContext.jsx";
 import QuestionsSection from "../../components/questionsSection/QuestionsSection.jsx";
 import {RenderHistoryQuestions} from "../../components/Components.jsx";
 import { useHistoryQuestions } from '../../contexts/HistoryQuestionsContext.jsx';
+import RenderCaseDetails from "../../components/renderCaseDetails/RenderCaseDetails.jsx";
 
 
 const QuestionsPreview = () => {
@@ -12,6 +13,7 @@ const QuestionsPreview = () => {
 
     return (
         <Container>
+            <RenderCaseDetails/>
             <RenderHistoryQuestions historyQuestions={historyState.historyQuestions} />
             <QuestionsSection questions={state.periodontalScreeningQuestions} sectionTitle="Periodontal Screening Questions" />
             <QuestionsSection questions={state.softTissueAssessment} sectionTitle="Soft Tissue Assessment" />
