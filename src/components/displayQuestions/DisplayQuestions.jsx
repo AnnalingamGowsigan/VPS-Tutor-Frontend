@@ -15,7 +15,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useNavigate } from "react-router-dom";
 import { useQuestions } from "../../contexts/QuestionsContext.jsx";
 
-const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, onNext }) => {
+const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, onNext,navigateBackPath }) => {
     const navigate = useNavigate();
     const [addExamQuestionOpen, setAddExamQuestionOpen] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -78,10 +78,15 @@ const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, 
                             <Button variant="outlined" onClick={handleAddExamQuestionToggle} className="add-new-question-btn">
                                 ADD NEW QUESTION
                             </Button>
-                            <Box display="flex" justifyContent="flex-end" mt={2}>
-                                <Button onClick={handleSubmitQuestions} variant="contained" color="primary">
-                                    {sectionType !== 'Diagnosis' ? 'Next' : 'Finish'}
-                                </Button>
+                            <Box display="flex" justifyContent="space-between" mt={2}>
+                                <Box>
+                                    <Button onClick={() => navigate(navigateBackPath)} variant="contained" color="primary" sx={{ marginRight: 1 }}>
+                                        Back
+                                    </Button>
+                                    <Button onClick={() => {}} variant="outlined" color="error">
+                                        Clear All
+                                    </Button>
+                                </Box>
                                 <Button onClick={handleSubmitQuestions} variant="contained" color="primary">
                                     {sectionType !== 'Diagnosis' ? 'Next' : 'Finish'}
                                 </Button>

@@ -24,6 +24,7 @@ const RecordPlaqueScore = () => {
                 questions={questions}
                 setQuestions={setLocalQuestions}
                 navigatePath={'/investigations'}
+                navigateBackPath={'/dentalChart'}
                 sectionType={'RecordPlaqueScore'}
                 onNext={handleNext}
             />

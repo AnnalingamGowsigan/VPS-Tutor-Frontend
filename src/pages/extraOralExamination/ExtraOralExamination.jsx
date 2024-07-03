@@ -25,6 +25,7 @@ const ExtraOralExamination = () => {
                 setQuestions={setLocalQuestions}
                 navigatePath={'/periodontalScreeningQuestions'}
                 sectionType={'ExtraOralExamination'}
+                navigateBackPath={'/historyQuestions'}
                 onNext={handleNext}
             />
         </div>

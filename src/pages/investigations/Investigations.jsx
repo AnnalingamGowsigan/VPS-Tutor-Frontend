@@ -23,6 +23,7 @@ const Investigations = () => {
                 questions={questions}
                 setQuestions={setLocalQuestions}
                 navigatePath={'/radiographs'}
+                navigateBackPath={'/recordPlaqueScore'}
                 sectionType={'Investigations'}
                 onNext={handleNext}
             />

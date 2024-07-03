@@ -24,6 +24,7 @@ const SensibilityRecordings = () => {
                 questions={questions}
                 setQuestions={setLocalQuestions}
                 navigatePath={'/hematologicalRecordings'}
+                navigateBackPath={'/radiographs'}
                 sectionType={"SensibilityRecordings"}
                 onNext={handleNext}
             />

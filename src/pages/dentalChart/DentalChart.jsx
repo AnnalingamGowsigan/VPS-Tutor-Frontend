@@ -207,14 +207,18 @@ const DentalChart = () => {
                 <p>38</p>
               </div>
             </div>
-            <Box display="flex" justifyContent="flex-end" mt={2}>
-              <Button
-                  onClick={() => handleSendDetails()}
-                  variant="contained"
-                  color="primary"
-              >
-                Next
-              </Button>
+              <Box display="flex" justifyContent="space-between" mt={2}>
+                <Box>
+                  <Button onClick={() => navigate('/hardTissueAssessment')} variant="contained" color="primary" sx={{ marginRight: 1 }}>
+                    Back
+                  </Button>
+                  <Button onClick={() => {}} variant="outlined" color="error">
+                    Clear All
+                  </Button>
+                </Box>
+                <Button onClick={() => handleSendDetails()} variant="contained" color="primary">
+                  Next
+                </Button>
             </Box>
           </Grid>
         </Grid>

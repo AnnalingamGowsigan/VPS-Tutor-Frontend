@@ -24,6 +24,7 @@ const PeriodontalScreeningQuestions = () => {
                 questions={questions}
                 setQuestions={setLocalQuestions}
                 navigatePath={'/softTissueAssessment'}
+                navigateBackPath={'/extraOralExamination'}
                 sectionType={'PeriodontalScreeningQuestions'}
                 onNext={handleNext}
             />

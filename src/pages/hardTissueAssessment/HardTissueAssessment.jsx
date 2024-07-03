@@ -24,6 +24,7 @@ const HardTissueAssessment = () => {
                 questions={questions}
                 setQuestions={setLocalQuestions}
                 navigatePath={'/dentalChart'}
+                navigateBackPath={'/softTissueAssessment'}
                 sectionType={'HardTissueAssessment'}
                 onNext={handleNext}
             />

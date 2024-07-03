@@ -26,6 +26,7 @@ const Diagnosis = () => {
                 navigatePath={'/questionsPreview'}
                 sectionType={"Diagnosis"}
                 onNext={handleNext}
+                navigateBackPath={'/hematologicalRecordings'}
             />
         </div>
     );

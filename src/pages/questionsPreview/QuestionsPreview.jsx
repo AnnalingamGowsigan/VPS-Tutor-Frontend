@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Container} from '@mui/material';
+import {Box, Button, Container} from '@mui/material';
 import { useQuestions } from "../../contexts/QuestionsContext.jsx";
 import QuestionsSection from "../../components/questionsSection/QuestionsSection.jsx";
 import {RenderHistoryQuestions} from "../../components/Components.jsx";
@@ -37,14 +37,15 @@ const QuestionsPreview = () => {
             <QuestionsSection questions={questionsState.sensibilityRecordings} sectionTitle="Sensibility Recordings" />
             <QuestionsSection questions={questionsState.hematologicalRecordings} sectionTitle="Hematological Recordings" />
             <QuestionsSection questions={questionsState.diagnosis} sectionTitle="Diagnosis" />
-            <Button
-                variant="contained"
-                color="primary"
-                sx={{ mt: 4 }}
-                onClick={handleCreateNewCase}
-            >
-                Create New Case
-            </Button>
+
+            <Box display="flex" justifyContent="space-between" mt={2}>
+                <Button onClick={() => navigate('/diagnosis')} variant="outlined" color="primary" sx={{ marginRight: 1 }}>
+                    Back
+                </Button>
+                <Button onClick={handleCreateNewCase} variant="contained" color="primary">
+                    Create New Case
+                </Button>
+            </Box>
         </Container>
     );
 };
