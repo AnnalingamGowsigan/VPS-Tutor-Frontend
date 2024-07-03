@@ -4,13 +4,16 @@ import App from './App.jsx'
 import {UserProvider} from "./contexts/UserContext.jsx";
 import {CaseProvider} from "./contexts/CaseContext.jsx";
 import {QuestionsProvider} from "./contexts/QuestionsContext.jsx";
+import {HistoryQuestionsProvider} from "./contexts/HistoryQuestionsContext.jsx"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <UserProvider>
           <CaseProvider>
               <QuestionsProvider>
-                <App />
+                  <HistoryQuestionsProvider>
+                        <App />
+                  </HistoryQuestionsProvider>
               </QuestionsProvider>
           </CaseProvider>
       </UserProvider>

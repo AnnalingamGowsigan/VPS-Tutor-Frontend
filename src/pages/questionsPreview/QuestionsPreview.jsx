@@ -2,13 +2,17 @@ import React from 'react';
 import { Container } from '@mui/material';
 import { useQuestions } from "../../contexts/QuestionsContext.jsx";
 import QuestionsSection from "../../components/questionsSection/QuestionsSection.jsx";
+import {RenderHistoryQuestions} from "../../components/Components.jsx";
+import { useHistoryQuestions } from '../../contexts/HistoryQuestionsContext.jsx';
 
 
 const QuestionsPreview = () => {
     const { state } = useQuestions();
+    const { state: historyState } = useHistoryQuestions();
 
     return (
         <Container>
+            <RenderHistoryQuestions historyQuestions={historyState.historyQuestions} />
             <QuestionsSection questions={state.periodontalScreeningQuestions} sectionTitle="Periodontal Screening Questions" />
             <QuestionsSection questions={state.softTissueAssessment} sectionTitle="Soft Tissue Assessment" />
             <QuestionsSection questions={state.hardTissueAssessment} sectionTitle="Hard Tissue Assessment" />
