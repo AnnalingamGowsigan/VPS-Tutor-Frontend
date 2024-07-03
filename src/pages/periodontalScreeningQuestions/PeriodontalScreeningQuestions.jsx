@@ -10,7 +10,7 @@ const PeriodontalScreeningQuestions = () => {
 
     useEffect(() => {
         setLocalQuestions(state.periodontalScreeningQuestions);
-        console.log("question in the context",state.periodontalScreeningQuestions)
+        console.log("question in the context periodontal",state.periodontalScreeningQuestions)
     }, [state.periodontalScreeningQuestions]);
 
     const handleNext = () => {

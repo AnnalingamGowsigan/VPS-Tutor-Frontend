@@ -12,8 +12,9 @@ export { default as Radiographs } from "./radiographs/Radiographs.jsx";
 export { default as SensibilityRecordings } from "./SensibilityRecordings/SensibilityRecordings.jsx";
 export { default as HematologicalRecordings } from "./hematologicalRecordings/HematologicalRecordings.jsx";
 export { default as Diagnosis } from "./diagnosis/Diagnosis.jsx";
-export { default as CaseDescription } from "./caseDescription/CaseDescription.jsx";
 export {default as QuestionsPreview} from "./questionsPreview/QuestionsPreview.jsx"
+export {default as ExtraOralExamination} from "./extraOralExamination/ExtraOralExamination.jsx"
+export {default as Investigations} from "./investigations/Investigations.jsx"
 
 //============ Student ======================//
 

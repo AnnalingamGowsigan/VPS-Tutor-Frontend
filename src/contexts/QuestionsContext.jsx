@@ -3,11 +3,13 @@ import React, { createContext, useContext, useReducer, useEffect } from 'react';
 const QuestionsContext = createContext();
 
 const initialState = {
+    extraOralExamination: [],
     periodontalScreeningQuestions: [],
     softTissueAssessment: [],
     hardTissueAssessment: [],
     dentalChart: [],
     recordPlaqueScore: [],
+    investigations: [],
     radiographs: [],
     sensibilityRecordings: [],
     hematologicalRecordings: [],

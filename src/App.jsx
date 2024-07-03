@@ -13,7 +13,7 @@ import {
     HematologicalRecordings,
     SensibilityRecordings,
     Radiographs,
-    RecordPlaqueScore, TeacherSignup, QuestionsPreview
+    RecordPlaqueScore, TeacherSignup, QuestionsPreview, ExtraOralExamination, Investigations
 } from "./pages/Pages.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
 import "./styles/global.scss";
@@ -42,6 +42,10 @@ const App = () => {
                     element: <PrivateRoute><HistoryQuestions /></PrivateRoute>,
                 },
                 {
+                    path: "/extraOralExamination",
+                    element: <PrivateRoute><ExtraOralExamination /></PrivateRoute>,
+                },
+                {
                     path: "/periodontalScreeningQuestions",
                     element: <PrivateRoute><PeriodontalScreeningQuestions /></PrivateRoute>,
                 },
@@ -60,6 +64,10 @@ const App = () => {
                 {
                     path: "/recordPlaqueScore",
                     element: <PrivateRoute><RecordPlaqueScore /></PrivateRoute>,
+                },
+                {
+                    path: "/investigations",
+                    element: <PrivateRoute><Investigations /></PrivateRoute>,
                 },
                 {
                     path: "/radiographs",

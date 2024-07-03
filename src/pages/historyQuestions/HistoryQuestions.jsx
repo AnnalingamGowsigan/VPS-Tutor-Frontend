@@ -25,7 +25,7 @@ const HistoryQuestions = () => {
     const initialSections = {
         'General Questions': [],
         'Medical History': [],
-        'Smoking and drinking habits': [],
+        'Habits': [],
         'Dietary history': [],
         'Others': []
     };
@@ -111,7 +111,7 @@ const HistoryQuestions = () => {
             console.log("History taking request", data)
             const response = await axios.put(`${config.apiBaseUrl}dentalComplaintCases/updateHistoryTakingQuestions`, data);
             console.log('Questions submitted successfully:', response.data);
-            navigate('/periodontalScreeningQuestions');
+            navigate('/extraOralExamination');
         } catch (error) {
             setIsLoading(false);
             console.error('Failed to submit questions:', error);

@@ -229,7 +229,7 @@ const BasicCaseDetails = () => {
 
                                         <label htmlFor="upload-thumbnail">
                                             <Button component="span" startIcon={<CloudUploadIcon />}>
-                                                Browse Files
+                                                Browse Image
                                             </Button>
                                         </label>
 
@@ -263,7 +263,7 @@ const BasicCaseDetails = () => {
                                             fullWidth
                                             margin="normal"
                                             id="compalint-type"
-                                            label="Compalint Type"
+                                            label="Complaint"
                                             variant="outlined"
                                             value={complaintType}
                                             onChange={handleComplaintTypeChange}

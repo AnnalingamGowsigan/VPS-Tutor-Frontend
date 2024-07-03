@@ -210,8 +210,8 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
                                         label="Select the Question type"
                                         onChange={(e) => setAnswerType(e.target.value)}
                                     >
-                                        <MenuItem value="single">Single Choice</MenuItem>
-                                        <MenuItem value="multiple">Multiple Choice</MenuItem>
+                                        <MenuItem value="single">Single Answer</MenuItem>
+                                        <MenuItem value="multiple">Multiple Answers</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>

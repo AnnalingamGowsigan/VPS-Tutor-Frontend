@@ -19,7 +19,7 @@ const HematologicalRecordings = () => {
 
     return (
         <div className="hematological-recordings">
-            <StepperComponent selectedStep={"Hematological Recordings"} />
+            <StepperComponent selectedStep={"Other Investigations"} />
             <DisplayQuestions
                 questions={questions}
                 setQuestions={setLocalQuestions}

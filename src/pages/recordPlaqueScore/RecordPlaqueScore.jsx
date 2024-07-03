@@ -19,11 +19,11 @@ const RecordPlaqueScore = () => {
 
     return (
         <div className="record-plaque-score">
-            <StepperComponent selectedStep={"Record Plaque Score"} />
+            <StepperComponent selectedStep={"Other Charts"} />
             <DisplayQuestions
                 questions={questions}
                 setQuestions={setLocalQuestions}
-                navigatePath={'/radiographs'}
+                navigatePath={'/investigations'}
                 sectionType={'RecordPlaqueScore'}
                 onNext={handleNext}
             />
