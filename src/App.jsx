@@ -97,6 +97,7 @@ const App = () => {
                     path: "/questionsPreview",
                     element: <PrivateRoute><QuestionsPreview /></PrivateRoute>,
                 },
+                
 
             ],
         },
