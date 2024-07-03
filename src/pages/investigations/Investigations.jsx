@@ -26,6 +26,7 @@ const Investigations = () => {
                 navigateBackPath={'/recordPlaqueScore'}
                 sectionType={'Investigations'}
                 onNext={handleNext}
+                clearPath={'investigations'}
             />
         </div>
     );

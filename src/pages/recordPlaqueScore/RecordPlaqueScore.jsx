@@ -27,6 +27,7 @@ const RecordPlaqueScore = () => {
                 navigateBackPath={'/dentalChart'}
                 sectionType={'RecordPlaqueScore'}
                 onNext={handleNext}
+                clearPath={'recordPlaqueScore'}
             />
         </div>
     );

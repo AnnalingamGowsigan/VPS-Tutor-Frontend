@@ -27,6 +27,7 @@ const ExtraOralExamination = () => {
                 sectionType={'ExtraOralExamination'}
                 navigateBackPath={'/historyQuestions'}
                 onNext={handleNext}
+                clearPath={'extraOralExamination'}
             />
         </div>
     );

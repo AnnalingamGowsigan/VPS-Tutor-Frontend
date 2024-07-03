@@ -27,6 +27,7 @@ const HematologicalRecordings = () => {
                 navigateBackPath={'/sensibilityRecordings'}
                 sectionType={"HematologicalRecordings"}
                 onNext={handleNext}
+                clearPath={'hematologicalRecordings'}
             />
         </div>
     );

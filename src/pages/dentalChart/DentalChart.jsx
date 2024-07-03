@@ -209,11 +209,8 @@ const DentalChart = () => {
             </div>
               <Box display="flex" justifyContent="space-between" mt={2}>
                 <Box>
-                  <Button onClick={() => navigate('/hardTissueAssessment')} variant="contained" color="primary" sx={{ marginRight: 1 }}>
+                  <Button onClick={() => navigate('/hardTissueAssessment')} variant="outlined" color="primary" sx={{ marginRight: 1 }}>
                     Back
-                  </Button>
-                  <Button onClick={() => {}} variant="outlined" color="error">
-                    Clear All
                   </Button>
                 </Box>
                 <Button onClick={() => handleSendDetails()} variant="contained" color="primary">

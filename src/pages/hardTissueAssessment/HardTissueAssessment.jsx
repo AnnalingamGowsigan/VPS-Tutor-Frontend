@@ -27,6 +27,7 @@ const HardTissueAssessment = () => {
                 navigateBackPath={'/softTissueAssessment'}
                 sectionType={'HardTissueAssessment'}
                 onNext={handleNext}
+                clearPath={'hardTissueAssessment'}
             />
         </div>
     );

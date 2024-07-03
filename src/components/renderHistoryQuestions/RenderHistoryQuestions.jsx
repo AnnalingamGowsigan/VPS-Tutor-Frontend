@@ -15,14 +15,14 @@ const RenderHistoryQuestions = ({ historyQuestions }) => {
     }, {});
 
     return (
-        <div>
+        <div style={{textAlign:"left"}}>
             {Object.entries(groupedQuestions).map(([section, questions]) => (
                 <div key={section}>
                     <Typography variant="h6" gutterBottom>
                         {section}
                     </Typography>
                     {questions.map((question, index) => (
-                        <Paper key={index} style={{ padding: '10px', margin: '10px 0' }}>
+                        <Paper key={index} style={{ padding: '10px', margin: '10px 0', textAlign: 'left' }}>
                             <Typography variant="body1">{question.questionText}</Typography>
                             <Typography variant="body2" color="textSecondary">
                                 Answer: {question.answer}

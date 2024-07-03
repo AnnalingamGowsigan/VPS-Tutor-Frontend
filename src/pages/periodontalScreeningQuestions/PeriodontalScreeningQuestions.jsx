@@ -27,6 +27,7 @@ const PeriodontalScreeningQuestions = () => {
                 navigateBackPath={'/extraOralExamination'}
                 sectionType={'PeriodontalScreeningQuestions'}
                 onNext={handleNext}
+                clearPath={'periodontalScreeningQuestions'}
             />
         </div>
     );

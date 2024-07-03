@@ -15,14 +15,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useNavigate } from "react-router-dom";
 import { useQuestions } from "../../contexts/QuestionsContext.jsx";
 
-const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, onNext,navigateBackPath }) => {
+const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, onNext,navigateBackPath,clearPath }) => {
     const navigate = useNavigate();
     const [addExamQuestionOpen, setAddExamQuestionOpen] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [severity, setSeverity] = useState('info');
     const [isLoading, setIsLoading] = useState(false);
-    const { state, setQuestions: updateQuestionsContext } = useQuestions();
+    const { state, setQuestions: updateQuestionsContext,clearSectionQuestions } = useQuestions();
 
     useEffect(() => {
         setQuestions(state[sectionType] || []);
@@ -83,7 +83,7 @@ const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, 
                                     <Button onClick={() => navigate(navigateBackPath)} variant="contained" color="primary" sx={{ marginRight: 1 }}>
                                         Back
                                     </Button>
-                                    <Button onClick={() => {}} variant="outlined" color="error">
+                                    <Button onClick={() => clearSectionQuestions(clearPath)} variant="outlined" color="error">
                                         Clear All
                                     </Button>
                                 </Box>

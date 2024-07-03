@@ -27,6 +27,7 @@ const SoftTissueAssessment = () => {
                 navigateBackPath={'/periodontalScreeningQuestions'}
                 sectionType={'SoftTissueAssessment'}
                 onNext={handleNext}
+                clearPath={'softTissueAssessment'}
             />
         </div>
     );

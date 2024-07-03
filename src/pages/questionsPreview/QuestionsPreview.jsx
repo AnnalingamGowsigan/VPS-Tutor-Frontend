@@ -7,7 +7,6 @@ import { useHistoryQuestions } from '../../contexts/HistoryQuestionsContext.jsx'
 import RenderCaseDetails from "../../components/renderCaseDetails/RenderCaseDetails.jsx";
 import {useNavigate} from "react-router-dom";
 import {useCase} from "../../contexts/CaseContext.jsx";
-import {DentalChart} from "../Pages.jsx";
 
 
 const QuestionsPreview = () => {
@@ -26,16 +25,18 @@ const QuestionsPreview = () => {
     };
 
     return (
-        <Container>
+        <Container style={{textAlign:"left"}}>
             <RenderCaseDetails/>
             <RenderHistoryQuestions historyQuestions={historyState.historyQuestions} />
+            <QuestionsSection questions={questionsState.extraOralExamination} sectionTitle="Extra Oral Examination" />
             <QuestionsSection questions={questionsState.periodontalScreeningQuestions} sectionTitle="Periodontal Screening Questions" />
             <QuestionsSection questions={questionsState.softTissueAssessment} sectionTitle="Soft Tissue Assessment" />
             <QuestionsSection questions={questionsState.hardTissueAssessment} sectionTitle="Hard Tissue Assessment" />
-            <QuestionsSection questions={questionsState.recordPlaqueScore} sectionTitle="Record Plaque Score" />
+            <QuestionsSection questions={questionsState.recordPlaqueScore} sectionTitle="Other Charts" />
+            <QuestionsSection questions={questionsState.investigations} sectionTitle="Investigations" />
             <QuestionsSection questions={questionsState.radiographs} sectionTitle="Radiographs" />
             <QuestionsSection questions={questionsState.sensibilityRecordings} sectionTitle="Sensibility Recordings" />
-            <QuestionsSection questions={questionsState.hematologicalRecordings} sectionTitle="Hematological Recordings" />
+            <QuestionsSection questions={questionsState.hematologicalRecordings} sectionTitle="Other Investigations" />
             <QuestionsSection questions={questionsState.diagnosis} sectionTitle="Diagnosis" />
 
             <Box display="flex" justifyContent="space-between" mt={2}>
