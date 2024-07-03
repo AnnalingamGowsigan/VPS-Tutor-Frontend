@@ -100,7 +100,7 @@ const HistoryQuestions = () => {
             historyTakingQuestions
         };
         console.log("history selected question",selectedQuestions)
-        setHistoryQuestions(selectedQuestions);
+        setHistoryQuestions(historyTakingQuestions);
         console.log("History context from historyQuestion.jsx",historyState.historyQuestions)
         await sendToAPI(dataToSend);
     };
