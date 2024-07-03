@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './hematologicalRecordings.scss';
-import {DisplayQuestions} from "../../components/Components.jsx";
+import { DisplayQuestions } from "../../components/Components.jsx";
 import StepperComponent from "../../layout/stepper/StepperComponent.jsx";
+import { useQuestions } from "../../contexts/QuestionsContext.jsx";
 
 const HematologicalRecordings = () => {
-    const [questions, setQuestions] = useState([]);
+    const { state, setQuestions } = useQuestions();
+    const [questions, setLocalQuestions] = useState(state.hematologicalRecordings);
+
+    useEffect(() => {
+        setLocalQuestions(state.hematologicalRecordings);
+        console.log("Questions in context:", state.hematologicalRecordings);
+    }, [state.hematologicalRecordings]);
+
+    const handleNext = () => {
+        setQuestions('hematologicalRecordings', questions);
+    };
 
     return (
         <div className="hematological-recordings">
-            <StepperComponent selectedStep={"Hematological Recordings"}></StepperComponent>
+            <StepperComponent selectedStep={"Other Investigations"} />
             <DisplayQuestions
                 questions={questions}
-                setQuestions={setQuestions}
+                setQuestions={setLocalQuestions}
                 navigatePath={'/diagnosis'}
-                sectionType ={"Hematological Recordings"}
+                sectionType={"HematologicalRecordings"}
+                onNext={handleNext}
             />
         </div>
     );

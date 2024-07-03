@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Button,
     Accordion,
@@ -18,13 +18,14 @@ import axios from "axios";
 import StepperComponent from "../../layout/stepper/StepperComponent.jsx";
 import {useNavigate} from "react-router-dom";
 import config from "../../config.js";
-import {useCase} from "../../contexts/CaseContext.jsx";
+import { useCase } from "../../contexts/CaseContext.jsx";
+import { useHistoryQuestions } from '../../contexts/HistoryQuestionsContext.jsx';
 
 const HistoryQuestions = () => {
     const initialSections = {
         'General Questions': [],
         'Medical History': [],
-        'Smoking and drinking habits': [],
+        'Habits': [],
         'Dietary history': [],
         'Others': []
     };
@@ -42,8 +43,13 @@ const HistoryQuestions = () => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [severity, setSeverity] = useState('info');
-    const { caseDetails, updateCaseDetails, clearCaseDetails } = useCase();
+    const { caseDetails } = useCase();
+    const { state, setHistoryQuestions, clearHistoryQuestions } = useHistoryQuestions();
+    const { state: historyState } = useHistoryQuestions();
 
+    useEffect(() => {
+        console.log("History questions use effect in history questions: ",historyState.historyQuestions)
+    }, [historyState.historyQuestions]);
 
     useEffect(() => {
         axios.get(`${config.apiBaseUrl}historyTakingQestionBank/getAll`)
@@ -63,6 +69,8 @@ const HistoryQuestions = () => {
             .catch(error => {
                 console.error('Failed to fetch questions:', error);
             });
+
+        setSelectedQuestions(state.historyQuestions);
     }, []);
 
     const handleSnackbarClose = () => {
@@ -91,31 +99,33 @@ const HistoryQuestions = () => {
             complaintTypeName: caseDetails.caseName,
             historyTakingQuestions
         };
-
+        console.log("history selected question",selectedQuestions)
+        setHistoryQuestions(historyTakingQuestions);
+        console.log("History context from historyQuestion.jsx",historyState.historyQuestions)
         await sendToAPI(dataToSend);
     };
 
     const sendToAPI = async (data) => {
         setIsLoading(true);
         try {
-            console.log("History taking request",data)
+            console.log("History taking request", data)
             const response = await axios.put(`${config.apiBaseUrl}dentalComplaintCases/updateHistoryTakingQuestions`, data);
             console.log('Questions submitted successfully:', response.data);
-            navigate('/periodontalScreeningQuestions');
+            navigate('/extraOralExamination');
         } catch (error) {
             setIsLoading(false);
             console.error('Failed to submit questions:', error);
-        }finally {
+        } finally {
             setIsLoading(false);
         }
     };
 
-
-    const handleQuestionClick = (question,sectionTitle) => {
+    const handleQuestionClick = (question, sectionTitle) => {
         setSelectedSection(sectionTitle);
         setCurrentQuestion(question);
         setDialogOpen(true);
     };
+
     const handleOpenAddQuestionDialog = (section) => {
         setSelectedSection(section);
         setAddQuestionDialogOpen(true);
@@ -153,7 +163,7 @@ const HistoryQuestions = () => {
                 [question]: { answer, status }
             }));
         }
-        handleSaveQuestionDetails(question, answer, status==="required"?true:false,selectedSection);
+        handleSaveQuestionDetails(question, answer, status === "required" ? true : false, selectedSection);
     };
 
     // Save or update question details
@@ -185,56 +195,56 @@ const HistoryQuestions = () => {
                     </Box>
                 )}
                 {!isLoading && (
-            <Grid container justifyContent="center">
-                <Grid item xs={12} sm={11} sx={{ boxShadow: 3, padding: 2, borderRadius: 1}}>
-                    {Object.entries(sections).map(([sectionTitle, questions], sectionIndex) => (
-                        <div key={sectionIndex} className="section">
-                        <Accordion key={sectionIndex} className="accordion-section">
-                            <AccordionSummary expandIcon={<ExpandMoreIcon />} className="accordion-summary">
-                                <Typography>{sectionTitle}</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails className="accordion-details">
-                                <List>
-                                    {questions.map((question, index) => {
-                                        const data = questionsData[question] || {};
-                                        const statusClass = data.answer
-                                            ? (data.status === 'required' ? 'required' : 'not-required')
-                                            : '';
-                                        return (
-                                            <ListItem
-                                                key={index}
-                                                className={`question-item ${statusClass}`}
-                                                onClick={() => handleQuestionClick(question,sectionTitle)}
-                                            >
-                                                <Typography>{`${index + 1}. ${question}`}</Typography>
-                                            </ListItem>
-                                        );
-                                    })}
-                                    <Button variant="outlined" className="add-question" onClick={() => handleOpenAddQuestionDialog(sectionTitle)}>
-                                        ADD NEW QUESTION
-                                    </Button>
-                                </List>
-                            </AccordionDetails>
-                        </Accordion>
-                        </div>
-                    ))}
-                    <Box display="flex" justifyContent="flex-end" mt={2}>
-                        <Button onClick={() => handleSubmitQuestions()} variant="contained" color="primary">
-                            Next
-                        </Button>
-                        <Snackbar
-                            open={openSnackbar}
-                            autoHideDuration={6000}
-                            onClose={handleSnackbarClose}
-                            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}  // Positions the Snackbar at the top center
-                        >
-                            <Alert onClose={handleSnackbarClose} severity={severity} sx={{ width: '100%' }}>
-                                {snackbarMessage}
-                            </Alert>
-                        </Snackbar>
-                    </Box>
-                </Grid>
-            </Grid>
+                    <Grid container justifyContent="center">
+                        <Grid item xs={12} sm={11} sx={{ boxShadow: 3, padding: 2, borderRadius: 1 }}>
+                            {Object.entries(sections).map(([sectionTitle, questions], sectionIndex) => (
+                                <div key={sectionIndex} className="section">
+                                    <Accordion key={sectionIndex} className="accordion-section">
+                                        <AccordionSummary expandIcon={<ExpandMoreIcon />} className="accordion-summary">
+                                            <Typography>{sectionTitle}</Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails className="accordion-details">
+                                            <List>
+                                                {questions.map((question, index) => {
+                                                    const data = questionsData[question] || {};
+                                                    const statusClass = data.answer
+                                                        ? (data.status === 'required' ? 'required' : 'not-required')
+                                                        : '';
+                                                    return (
+                                                        <ListItem
+                                                            key={index}
+                                                            className={`question-item ${statusClass}`}
+                                                            onClick={() => handleQuestionClick(question, sectionTitle)}
+                                                        >
+                                                            <Typography>{`${index + 1}. ${question}`}</Typography>
+                                                        </ListItem>
+                                                    );
+                                                })}
+                                                <Button variant="outlined" className="add-question" onClick={() => handleOpenAddQuestionDialog(sectionTitle)}>
+                                                    ADD NEW QUESTION
+                                                </Button>
+                                            </List>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                </div>
+                            ))}
+                            <Box display="flex" justifyContent="flex-end" mt={2}>
+                                <Button onClick={() => handleSubmitQuestions()} variant="contained" color="primary">
+                                    Next
+                                </Button>
+                                <Snackbar
+                                    open={openSnackbar}
+                                    autoHideDuration={6000}
+                                    onClose={handleSnackbarClose}
+                                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}  // Positions the Snackbar at the top center
+                                >
+                                    <Alert onClose={handleSnackbarClose} severity={severity} sx={{ width: '100%' }}>
+                                        {snackbarMessage}
+                                    </Alert>
+                                </Snackbar>
+                            </Box>
+                        </Grid>
+                    </Grid>
                 )}
             </Box>
             <AddHistoryQuestionDialog

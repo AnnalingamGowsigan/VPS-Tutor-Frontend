@@ -5,14 +5,16 @@ import './stepperComponent.scss';
 const steps = [
     'Basic Details',
     'History Questions',
+    'Extra Oral Examination',
     'Periodontal Screening Questions',
     'Soft Tissue Assessment',
     'Hard Tissue Assessment',
     'Dental Chart',
-    'Record Plaque Score',
+    'Other Charts',
+    'Investigations',
     'Radiographs',
     'Sensibility Recordings',
-    'Hematological Recordings',
+    'Other Investigations',
     'Diagnosis'
 ];
 

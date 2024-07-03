@@ -7,6 +7,9 @@ import LoginIcon from '@mui/icons-material/Login';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import {useUser} from "../../contexts/UserContext.jsx";
+import {useQuestions} from "../../contexts/QuestionsContext.jsx";
+import {useHistoryQuestions} from "../../contexts/HistoryQuestionsContext.jsx";
+import {useCase} from "../../contexts/CaseContext.jsx";
 
 const StyledAppBar = styled(AppBar)({
     backgroundColor: '#ffffff',
@@ -67,6 +70,17 @@ const Navbar = () => {
         </Menu>
     );
 
+    const { clearAllQuestions } = useQuestions();
+    const {clearHistoryQuestions} = useHistoryQuestions()
+    const { clearCaseDetails } = useCase();
+
+    const handleCreateNewCase = () => {
+        clearAllQuestions();
+        clearHistoryQuestions();
+        clearCaseDetails();
+        navigate('/createCase');
+    };
+
     return (
         <StyledAppBar position="static">
             <StyledToolbar>
@@ -76,8 +90,8 @@ const Navbar = () => {
                 <div>
                     {user ? (
                         <>
-                            <Button startIcon={<AddBox />} color="inherit" onClick={() => navigate('/createCase')}>
-                                Create Case
+                            <Button startIcon={<AddBox />} color="inherit" onClick={handleCreateNewCase}>
+                                Create New Case
                             </Button>
                             <Button startIcon={<LoginIcon />} color="inherit" onClick={() => navigate('/teacherSignup')}>
                                 Sign Up

@@ -143,7 +143,8 @@ const BasicCaseDetails = () => {
                 caseId: response.data.caseId,
                 caseName: response.data.caseName,
                 caseScenario: response.data.caseScenario,
-                mainComplaintType: response.data.mainComplaintType
+                mainComplaintType: response.data.mainComplaintType,
+                imgUrl: response.data.thumbnailImageURL
             });
             setSnackbarMessage(`Basic details added successfully`);
             setSeverity('success');
@@ -228,7 +229,7 @@ const BasicCaseDetails = () => {
 
                                         <label htmlFor="upload-thumbnail">
                                             <Button component="span" startIcon={<CloudUploadIcon />}>
-                                                Browse Files
+                                                Browse Image
                                             </Button>
                                         </label>
 
@@ -262,7 +263,7 @@ const BasicCaseDetails = () => {
                                             fullWidth
                                             margin="normal"
                                             id="compalint-type"
-                                            label="Compalint Type"
+                                            label="Complaint"
                                             variant="outlined"
                                             value={complaintType}
                                             onChange={handleComplaintTypeChange}

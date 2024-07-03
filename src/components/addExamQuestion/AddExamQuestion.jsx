@@ -11,40 +11,33 @@ import {
     IconButton,
     FormControl,
     InputLabel,
-    Grid, Box, CircularProgress
+    Grid,
+    Box,
+    CircularProgress
 } from '@mui/material';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CancelIcon from '@mui/icons-material/Cancel';
 import './addExamQuestion.scss';
 import axios from "axios";
-import {useCase} from "../../contexts/CaseContext.jsx";
+import { useCase } from "../../contexts/CaseContext.jsx";
 import config from "../../config.js";
 
-
 const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
-    const { caseDetails, updateCaseDetails, clearCaseDetails } = useCase();
+    const { caseDetails } = useCase();
     const initialQuestionState = { text: '', image: null };
     const initialAnswerState = [
         { text: '', image: null, isCorrect: false },
-        { text: '', image: null, isCorrect: false},
-        { text: '', image: null, isCorrect: false},
-        { text: '', image: null, isCorrect: false},
+        { text: '', image: null, isCorrect: false },
+        { text: '', image: null, isCorrect: false },
+        { text: '', image: null, isCorrect: false },
     ];
 
     const [question, setQuestion] = useState(initialQuestionState);
     const [answers, setAnswers] = useState(initialAnswerState);
     const [answerType, setAnswerType] = useState('single');
-    const [questionImage,setQuestionImage] = useState(null);
-    const [answerImages, setAnswerImages] = useState([null, null, null,null, null, null,null, null, null]);
+    const [questionImage, setQuestionImage] = useState(null);
+    const [answerImages, setAnswerImages] = useState([null, null, null, null, null, null, null, null, null]);
     const [isLoading, setIsLoading] = useState(false);
-
-    // ... existing functions ...
-
-    const indexToLetter = (index) => {
-        // Convert index to ASCII. 'A' is 65 in ASCII, so adding the index will give us the right letter
-        return String.fromCharCode(65 + index); // 65 is the ASCII code for 'A'
-    };
-
 
     const handleClearForm = () => {
         setQuestion(initialQuestionState);
@@ -109,7 +102,7 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
     };
 
     const handleSaveQuestion = async () => {
-        setIsLoading(true)
+        setIsLoading(true);
         const questionData = {
             type: answerType,
             text: question.text,
@@ -121,20 +114,15 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
             }))
         };
 
-        console.log(JSON.stringify(questionData, null, 2));
-
-
-
         const formData = new FormData();
 
         // Append images directly if they exist; append a string 'null' if not
         formData.append('QuestionImage', questionImage ? questionImage : null);
         answerImages.forEach((image, index) => {
             if (image != null && index < 9) {
-                formData.append(indexToLetter(index), image);
+                formData.append(String.fromCharCode(65 + index), image); // 'A', 'B', 'C', etc.
             }
         });
-        console.log(answerImages)
 
         // Append general information
         formData.append('mainTypeName', caseDetails.mainComplaintType);
@@ -142,8 +130,6 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
         formData.append('caseId', caseDetails.caseId);
         formData.append('sectionName', section);
         formData.append('questionType', answerType);
-
-
 
         // Append question details as a JSON string
         const answerData = {
@@ -154,10 +140,8 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
         };
         formData.append('answerChoices', JSON.stringify(answerData));
         formData.append('question', question.text);
-
-        //console.log(formData)
-
-
+        console.log("local question: ", questionData)
+        onAddQuestion(questionData);
 
         try {
             const response = await axios.post(`${config.apiBaseUrl}examintionQuestions/createExaminationQuestion`, formData, {
@@ -169,13 +153,12 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
             onAddQuestion(questionData);
         } catch (error) {
             console.error('Failed to add question:', error);
-        }finally {
-            setIsLoading(false)
+        } finally {
+            setIsLoading(false);
             handleClose();
-            setAnswerImages([null, null, null,null, null, null,null, null, null])
+            setAnswerImages([null, null, null, null, null, null, null, null, null]);
         }
     };
-
 
     const handleRemoveAnswerField = (index) => {
         setAnswers(answers.filter((_, i) => i !== index));
@@ -187,98 +170,97 @@ const AddExamQuestion = ({ open, handleClose, onAddQuestion, section }) => {
             {isLoading && (
                 <DialogContent>
                     <Grid container alignItems="center" spacing={2} className={`question-container`} height="350px">
-                        <Box position="absolute" top="50%" left="50%" style={{transform: 'translate(-50%, -50%)'}}>
-                            <CircularProgress/>
+                        <Box position="absolute" top="50%" left="50%" style={{ transform: 'translate(-50%, -50%)' }}>
+                            <CircularProgress />
                         </Box>
                     </Grid>
                 </DialogContent>
             )}
             {!isLoading && (
-            <DialogContent>
-                <div>
-                <Grid container alignItems="center" spacing={2} className={`question-container`}>
-                    <Grid item xs >
-                        <TextField
+                <DialogContent>
+                    <div>
+                        <Grid container alignItems="center" spacing={2} className={`question-container`}>
+                            <Grid item xs>
+                                <TextField
+                                    fullWidth
+                                    label="Enter Question"
+                                    variant="outlined"
+                                    value={question.text}
+                                    onChange={(e) => setQuestion({ ...question, text: e.target.value })}
+                                />
+                            </Grid>
+                            <Grid item style={{ display: 'flex', alignItems: 'center' }}>
+                                {question.image && (
+                                    <img src={question.image} alt="Question Preview" style={{ width: '48px', height: '48px', marginRight: '10px' }} />
+                                )}
+                                <IconButton color="primary" component="label" style={{ marginLeft: '10px' }}>
+                                    <AddPhotoAlternateIcon />
+                                    <input type="file" hidden onChange={handleQuestionImageChange} accept="image/*" />
+                                </IconButton>
+                            </Grid>
 
-                            fullWidth
-                            label="Enter Question"
-                            variant="outlined"
-                            value={question.text}
-                            onChange={(e) => setQuestion({ ...question, text: e.target.value })}
-                        />
-                    </Grid>
-                    <Grid item style={{ display: 'flex', alignItems: 'center' }}>
-                        {question.image && (
-                            <img src={question.image} alt="Question Preview" style={{ width: '48px', height: '48px', marginRight: '10px' }} />
-                        )}
-                        <IconButton color="primary" component="label" style={{ marginLeft: '10px' }}>
-                            <AddPhotoAlternateIcon />
-                            <input type="file" hidden onChange={handleQuestionImageChange} accept="image/*" />
-                        </IconButton>
-                    </Grid>
-
-                    <Grid item>
-                        <FormControl>
-                            <InputLabel id="answer-type-select-label">Answer Type</InputLabel>
-                            <Select
-                                className="custom-select"
-                                labelId="answer-type-select-label"
-                                id="answer-type-select"
-                                value={answerType}
-                                label="Select the Question type"
-                                onChange={(e) => setAnswerType(e.target.value)}
-                            >
-                                <MenuItem value="single">Single Choice</MenuItem>
-                                <MenuItem value="multiple">Multiple Choice</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                </Grid>
-                {answers.map((answer, index) => (
-                    <Grid container alignItems="center" spacing={2} key={index}>
-                        <Grid item xs>
-                            <TextField
-                                fullWidth
-                                label={`Enter Answer ${index + 1}`}
-                                variant="outlined"
-                                value={answer.text}
-                                onChange={(e) => handleAnswerTextChange(index, e.target.value)}
-                            />
+                            <Grid item>
+                                <FormControl>
+                                    <InputLabel id="answer-type-select-label">Answer Type</InputLabel>
+                                    <Select
+                                        className="custom-select"
+                                        labelId="answer-type-select-label"
+                                        id="answer-type-select"
+                                        value={answerType}
+                                        label="Select the Question type"
+                                        onChange={(e) => setAnswerType(e.target.value)}
+                                    >
+                                        <MenuItem value="single">Single Answer</MenuItem>
+                                        <MenuItem value="multiple">Multiple Answers</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
                         </Grid>
-                        <Grid item style={{ display: 'flex', alignItems: 'center' }}>
-                            {answer.image && (
-                                <img src={answer.image} alt="Answer Preview" style={{ width: '48px', height: '48px', marginRight: '10px' }} />
-                            )}
-                            <IconButton color="primary" component="label">
-                                <AddPhotoAlternateIcon />
-                                <input type="file" hidden onChange={(e) => handleAnswerImageChange(index, e)} accept="image/*" />
-                            </IconButton>
-                        </Grid>
-                        <Grid item>
-                            <FormControl>
-                                <Select
-                                    labelId={`correct-answer-select-label-${index}`}
-                                    id={`correct-answer-select-${index}`}
-                                    value={answer.isCorrect ? 'correct' : 'incorrect'}
-                                    onChange={(e) => handleAnswerCorrectnessChange(index, e.target.value)}
-                                >
-                                    <MenuItem value="correct">Correct Answer</MenuItem>
-                                    <MenuItem value="incorrect">Incorrect Answer</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
-                        <Grid item>
-                            <IconButton onClick={() => handleRemoveAnswerField(index)}>
-                                <CancelIcon />
-                            </IconButton>
-                        </Grid>
-                    </Grid>
-                ))}
-                <Button onClick={handleAddAnswerField} variant="outlined" className={`add-answer-btn`}>
-                    ADD A NEW ANSWER FIELD
-                </Button>
-                </div>
-            </DialogContent>
+                        {answers.map((answer, index) => (
+                            <Grid container alignItems="center" spacing={2} key={index}>
+                                <Grid item xs>
+                                    <TextField
+                                        fullWidth
+                                        label={`Enter Answer ${index + 1}`}
+                                        variant="outlined"
+                                        value={answer.text}
+                                        onChange={(e) => handleAnswerTextChange(index, e.target.value)}
+                                    />
+                                </Grid>
+                                <Grid item style={{ display: 'flex', alignItems: 'center' }}>
+                                    {answer.image && (
+                                        <img src={answer.image} alt="Answer Preview" style={{ width: '48px', height: '48px', marginRight: '10px' }} />
+                                    )}
+                                    <IconButton color="primary" component="label">
+                                        <AddPhotoAlternateIcon />
+                                        <input type="file" hidden onChange={(e) => handleAnswerImageChange(index, e)} accept="image/*" />
+                                    </IconButton>
+                                </Grid>
+                                <Grid item>
+                                    <FormControl>
+                                        <Select
+                                            labelId={`correct-answer-select-label-${index}`}
+                                            id={`correct-answer-select-${index}`}
+                                            value={answer.isCorrect ? 'correct' : 'incorrect'}
+                                            onChange={(e) => handleAnswerCorrectnessChange(index, e.target.value)}
+                                        >
+                                            <MenuItem value="correct">Correct Answer</MenuItem>
+                                            <MenuItem value="incorrect">Incorrect Answer</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item>
+                                    <IconButton onClick={() => handleRemoveAnswerField(index)}>
+                                        <CancelIcon />
+                                    </IconButton>
+                                </Grid>
+                            </Grid>
+                        ))}
+                        <Button onClick={handleAddAnswerField} variant="outlined" className={`add-answer-btn`}>
+                            ADD A NEW ANSWER FIELD
+                        </Button>
+                    </div>
+                </DialogContent>
             )}
             <DialogActions>
                 <Button onClick={() => handleClose(false)} color="primary">
