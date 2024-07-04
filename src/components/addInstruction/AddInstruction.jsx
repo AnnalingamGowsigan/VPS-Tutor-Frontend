@@ -201,7 +201,7 @@ const AddInstruction = ({ open, handleClose, onAddQuestion, section }) => {
                     Clear
                 </Button>
                 <Button onClick={handleSaveQuestion} color="primary">
-                    Add Question
+                    Add Instruction
                 </Button>
             </DialogActions>
         </Dialog>
