@@ -20,6 +20,7 @@ import {useNavigate} from "react-router-dom";
 import config from "../../config.js";
 import { useCase } from "../../contexts/CaseContext.jsx";
 import { useHistoryQuestions } from '../../contexts/HistoryQuestionsContext.jsx';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const HistoryQuestions = () => {
     const initialSections = {
@@ -244,6 +245,12 @@ const HistoryQuestions = () => {
                                 </Snackbar>
                             </Box>
                         </Grid>
+                        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mt={2}>
+                            <Typography variant="h6" gutterBottom>Here, you can select both correct and incorrect questions. Please check <CheckCircleIcon /> "Required" if the question is correct.</Typography>
+                            <Button  variant="contained" color="primary">
+                                <a href="https://docs.google.com/document/d/1_ySUF1pEpn02zSNgCarxD4ZEnyougR06VH493kVkpx8/edit?usp=sharing" target="_blank">Sample Questions!</a>
+                            </Button>
+                        </Box>
                     </Grid>
                 )}
             </Box>
