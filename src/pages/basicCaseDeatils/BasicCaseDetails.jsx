@@ -300,7 +300,7 @@ const BasicCaseDetails = () => {
                 <Box display="flex" justifyContent="flex-end" mt={2}>
                     <Typography variant="h6" gutterBottom>New to the system? 👉 </Typography>
                     <Button  variant="contained" color="primary">
-                        <a href="" target="_blank">Check out these sample questions!</a>
+                        <a href="https://docs.google.com/document/d/1_ySUF1pEpn02zSNgCarxD4ZEnyougR06VH493kVkpx8/edit?usp=sharing" target="_blank">Check out these sample questions!</a>
                     </Button>
                 </Box>
             </Grid>

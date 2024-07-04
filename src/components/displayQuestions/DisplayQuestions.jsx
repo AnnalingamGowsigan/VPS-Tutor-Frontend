@@ -14,6 +14,7 @@ import { AddExamQuestion, QuestionDisplay, AddInstruction } from "../Components.
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useNavigate } from "react-router-dom";
 import { useQuestions } from "../../contexts/QuestionsContext.jsx";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle.js";
 
 const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, onNext,navigateBackPath,clearPath }) => {
     const navigate = useNavigate();
@@ -114,6 +115,12 @@ const DisplayQuestions = ({ questions, setQuestions, navigatePath, sectionType, 
                                 </Snackbar>
                             </Box>
                         </Grid>
+                        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" mt={2}>
+                            <Typography variant="h6" gutterBottom>If you don't have a question in this section, skip it.</Typography>
+                            <Button  variant="contained" color="primary">
+                                <a href="https://docs.google.com/document/d/1_ySUF1pEpn02zSNgCarxD4ZEnyougR06VH493kVkpx8/edit?usp=sharing" target="_blank">Sample Questions!</a>
+                            </Button>
+                        </Box>
                     </Grid>
                 )}
             </Box>
